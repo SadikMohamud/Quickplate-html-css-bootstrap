@@ -1,0 +1,62 @@
+/*google fonts*/
+@import url('https://fonts.googleapis.com/css2?family=Kalam:wght@300;400;700&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Oswald:wght@200..700&family=Science+Gothic:wght@100..900&display=swap');
+
+
+
+/* universal selector*/
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+     font-family:'Kalam', cursive;
+     color:#000
+}
+/*main body css*/
+body{
+   
+    background-color: #e8e8e8;
+        min-height:100vh;
+    display: flex;
+    flex-direction: column;
+
+}
+
+
+header .nav-link{
+color: #000;
+}
+
+header .nav.nav-pills .nav-item .nav-link.active {
+    background-color: #000;
+    margin-left: 50px;
+}
+
+
+header .nav.nav-pills .nav-item .nav-link.active:hover {
+    background-color: #e8e8e8;
+    color:#000000
+}
+
+main{  
+    flex:1 0 auto;
+    margin-top: 47px;
+
+
+
+    /*make any element take up any surplus space to push down footer*/
+}
+
+/* footer section */
+#social-networks{
+    text-align:center;
+    padding:20px 0;
+    display:flex;
+    justify-content: space-evenly;
+    list-style-type: none;
+}
+
+#social-networks i{
+    font-size:160%;
+    padding:5%;
+    color:#3a3a3a
+}
