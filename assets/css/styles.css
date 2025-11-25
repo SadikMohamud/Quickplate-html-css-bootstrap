@@ -4,39 +4,115 @@
 
 
 /* universal selector*/
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-     font-family:'Kalam', cursive;
-     color:#000
+:root{
+    --sketch-border:2px solid #000;
+    --sketch-shadow:4px 4px 0px rgba(0,0,0,0.2);
 }
+
 /*main body css*/
 body{
    
+   font-family:'Kalam', cursive;
+   background-color: #e8e8e8;
+   background-image: radial-gradient(#f0f0f0 1px, transparent 1px),
+   radial-gradient(#f0f0f0 1px, transparent 1px);
+   background-size:20px 20px;
+   background-position: 0 0, 10px 10px;
+   padding:15px
+
+}
+
+/*Custom nav bar*/
+.navbar{
+    padding:15px;
+    background-color: transparent !important;
+    box-shadow: none !important;
+}
+
+/* Custom Nuermorphic Buttons*/
+
+.nav-link{
     background-color: #e8e8e8;
-        min-height:100vh;
-    display: flex;
-    flex-direction: column;
-
+    border:none;
+    padding:10px 20px;
+    font-family:'Kalam', cursive;
+    font-weight: bold;
+    font-size:1rem;
+    color:#333;
+    border-radius: 15px;
+    box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.2),
+                -4px -4px 8px rgba(255, 255, 255, 0.8);
+                cursor:pointer;
+                transition: all 0.2s ease;
+                position: relative;
+                overflow: hidden;
+                margin-left:10px;
+                display: inline-block;
+}
+.nav-link:hover{
+    transform: translateY(-2px);
+    box-shadow: 
+     6px 6px 12px rgba(0, 0, 0, 0.25),
+     -6px -6px 12px rgba(255, 255, 255, 0.9);
+    color:#333;
+}
+.nav-link:active{
+    transform: translateY(1px);
+    box-shadow: 
+    inset 2px 2px 5px rgba(0, 0, 0, 0.2),
+    inset -2px -2px 5px rgba(255, 255, 255, 0.8) 
+}
+/* Custom hamburger menu styling*/
+.navbar-toggler{
+    border: var(--sketch-border);
+    psdding:5px 10ox;
+    border-radius: 15px;
+    box-shadow: var(--sketch-shadow);
 }
 
-
-header .nav-link{
-color: #000;
+.navbar-toggler:focus{
+    box-shadow: none;
 }
 
-header .nav.nav-pills .nav-item .nav-link.active {
-    background-color: #000;
-    margin-left: 50px;
+.nvcar-toggler-icon{
+    background-color: url("data:image/svg+xml,%3csvg xmlns='http:www.w3.org/2000/svg' viewBox='0 0 30 30 ' %3e%3cpath stroke='rgba%280, 0, 0.75%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width= '3' d= 'M4 7h22M4 15h22M 23h22' /%3e%3c/svg%3e");
+}
+/*Sketchy border for navbar brand*/
+
+.navbar-brand{
+    position:relative;
+    font-weight: bold;
+    font-size: 1.5rem;
+    color:#000;
+    text-decoration: none;
+    padding:5px 15px;
 }
 
-
-header .nav.nav-pills .nav-item .nav-link.active:hover {
-    background-color: #e8e8e8;
-    color:#000000
+.navbar-brand::before{
+    content: "";
+    position: absolute;
+    top:-5px;
+    left:-5px;
+    right:-5px;
+    bottom: -5px;
+    border:2px solid #000;
+    opacity:0.5;
+    transform: rotate(-1deg);
+    pointer-events:none
 }
-
+/*Mobile menu adjustments*/
+@media (max-width:991.98){
+    .navbar-nav{
+        margin-top:15px;
+    }
+    .navbar-items{
+        margin-top: 10px;
+    }
+    .nav-link{
+        display:block;
+        width:100%;
+    }
+}
 main{  
     flex:1 0 auto;
     margin-top: 47px;
@@ -45,6 +121,9 @@ main{
 
     /*make any element take up any surplus space to push down footer*/
 }
+
+
+
 
 /* footer section */
 #social-networks{
