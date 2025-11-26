@@ -1,141 +1,67 @@
-/*google fonts*/
-@import url('https://fonts.googleapis.com/css2?family=Kalam:wght@300;400;700&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Oswald:wght@200..700&family=Science+Gothic:wght@100..900&display=swap');
-
-
-
-/* universal selector*/
-:root{
+/*============================================
+CSS Variables(Custom css properties)
+==============================================*/
+*{
+    /*hand-drawn border and shaddow effecs */
     --sketch-border:2px solid #000;
-    --sketch-shadow:4px 4px 0px rgba(0,0,0,0.2);
+    --sketch-shadow:4px 4px0px rgba(0,0,0,0.2);
+    /* color palette - keeping ot simple with black and white*/
+    --primary-color:#000;
+    --background-color:#fff;
+    
+    /*Typography*/
+
+    --font-family:'Kalam', cursive;
 }
 
-/*main body css*/
+/*============================================
+Global Styles===============================================*/
 body{
-   
-   font-family:'Kalam', cursive;
-   background-color: #e8e8e8;
-   background-image: radial-gradient(#f0f0f0 1px, transparent 1px),
-   radial-gradient(#f0f0f0 1px, transparent 1px);
-   background-size:20px 20px;
-   background-position: 0 0, 10px 10px;
-   padding:15px
+    /* Set background color and add a subtle grid pattern*/
+    background-color:var(--background-color);
+    background-image:linear-gradient(rgba(255,255,255,0.8) 1px, transparent 1px), linear-gradient(90deg,rgba(255,255,2550.8) 1px, transparent 1px);
+    background-size:20px 20px;
+    padding: 15px;}
 
-}
+/*============================================
+Hand-Drawn UI Components===============================================*/
 
-/*Custom nav bar*/
-.navbar{
-    padding:15px;
-    background-color: transparent !important;
-    box-shadow: none !important;
-}
-
-/* Custom Nuermorphic Buttons*/
-
-.nav-link{
-    background-color: #e8e8e8;
-    border:none;
-    padding:10px 20px;
-    font-family:'Kalam', cursive;
-    font-weight: bold;
-    font-size:1rem;
-    color:#333;
-    border-radius: 15px;
-    box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.2),
-                -4px -4px 8px rgba(255, 255, 255, 0.8);
-                cursor:pointer;
-                transition: all 0.2s ease;
-                position: relative;
-                overflow: hidden;
-                margin-left:10px;
-                display: inline-block;
-}
-.nav-link:hover{
-    transform: translateY(-2px);
-    box-shadow: 
-     6px 6px 12px rgba(0, 0, 0, 0.25),
-     -6px -6px 12px rgba(255, 255, 255, 0.9);
-    color:#333;
-}
-.nav-link:active{
-    transform: translateY(1px);
-    box-shadow: 
-    inset 2px 2px 5px rgba(0, 0, 0, 0.2),
-    inset -2px -2px 5px rgba(255, 255, 255, 0.8) 
-}
-/* Custom hamburger menu styling*/
-.navbar-toggler{
-    border: var(--sketch-border);
-    psdding:5px 10ox;
-    border-radius: 15px;
-    box-shadow: var(--sketch-shadow);
-}
-
-.navbar-toggler:focus{
-    box-shadow: none;
-}
-
-.nvcar-toggler-icon{
-    background-color: url("data:image/svg+xml,%3csvg xmlns='http:www.w3.org/2000/svg' viewBox='0 0 30 30 ' %3e%3cpath stroke='rgba%280, 0, 0.75%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width= '3' d= 'M4 7h22M4 15h22M 23h22' /%3e%3c/svg%3e");
-}
-/*Sketchy border for navbar brand*/
-
-.navbar-brand{
+/*Sketchy border effect for containers*/
+.sketch-border{
+    border:var(--sketch-border);
     position:relative;
-    font-weight: bold;
-    font-size: 1.5rem;
-    color:#000;
-    text-decoration: none;
-    padding:5px 15px;
+    box-shadow:var(--sketch-shadow);
 }
 
-.navbar-brand::before{
-    content: "";
-    position: absolute;
-    top:-5px;
-    left:-5px;
-    right:-5px;
-    bottom: -5px;
+/* Creates a second, slightly rotated border for hand drawn effect*/
+
+.sketch-border::before {
+    content:"";
+    position:absolute;
+    top:-2px;
+    left:-2px;
+    right:-2px;
+    bottom:-2px;
     border:2px solid #000;
-    opacity:0.5;
-    transform: rotate(-1deg);
-    pointer-events:none
-}
-/*Mobile menu adjustments*/
-@media (max-width:991.98){
-    .navbar-nav{
-        margin-top:15px;
-    }
-    .navbar-items{
-        margin-top: 10px;
-    }
-    .nav-link{
-        display:block;
-        width:100%;
-    }
-}
-main{  
-    flex:1 0 auto;
-    margin-top: 47px;
-
-
-
-    /*make any element take up any surplus space to push down footer*/
+    transform:rotate(-1deg);
+    pointer-events: none;
 }
 
-
-
-
-/* footer section */
-#social-networks{
-    text-align:center;
-    padding:20px 0;
-    display:flex;
-    justify-content: space-evenly;
-    list-style-type: none;
+/*Hand-drawn button styles*/
+.sketchy-button{
+    background-color: var(--background-color);
+    border:2px solid #000;
+    padding: 8px 15px;
+    font-weight:bold;
+    display:inline-block;
+    position: relative;
+    cursor: pointer;
+    transition: all 0.2s;
+    box-shadow: 3px 3px 0px rgba(0,0,0,0.2);
 }
 
-#social-networks i{
-    font-size:160%;
-    padding:5%;
-    color:#3a3a3a
+/*Button hover effect - moves up slightly */
+.sketch-button:hover{
+    transform:translateY(1px);
+    box-shadow:2px 2px 0px rgba(0,0,0,0.2);
 }
