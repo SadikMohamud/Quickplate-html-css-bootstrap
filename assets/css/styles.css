@@ -1,79 +1,130 @@
-/*============================================
-google fonts import
-==============================================*/    
-@import url('https://fonts.googleapis.com/css2?family=Kalam:wght@300;400;700&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Oswald:wght@200..700&family=Science+Gothic:wght@100..900&display=swap');
+        /* ========================================
+           CSS CUSTOM PROPERTIES (VARIABLES)
+           Store reusable values for consistency
+           ======================================== */
+        :root {
+            /* Border style for sketchy elements - 2px thick solid black line */
+            --sketch-border: 2px solid #000;
+            /* Shadow for sketchy elements - creates depth effect */
+            --sketch-shadow: 4px 4px 0px rgba(0, 0, 0, 0.2);
+        }
+        
+        /* ========================================
+           UNIVERSAL SELECTOR
+           Applies to ALL elements on the page
+           ======================================== */
+        * {
+            /* Apply handwritten font to everything */
+            font-family: 'Kalam', cursive;
+            /* Make all text black */
+            color: #000;
+        }
+        
+        /* ========================================
+           BODY STYLES
+           Background and overall page setup
+           ======================================== */
+        body {
+            /* White background color */
+            background-color: #fff;
+            /* Creates a subtle grid pattern using CSS gradients */
+            /* First gradient = horizontal lines, second = vertical lines */
+            background-image: 
+                linear-gradient(rgba(255,255,255,0.8) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.8) 1px, transparent 1px);
+            /* Size of each grid square - 20px by 20px */
+            background-size: 20px 20px;
+            /* Space around the entire page content */
+            padding: 15px;
+        }
+        
+        /* ========================================
+           SKETCH BORDER CLASS
+           Creates a hand-drawn border effect
+           ======================================== */
+        .sketch-border {
+            /* Apply the border using our CSS variable */
+            border: var(--sketch-border);
+            /* Required for pseudo-element positioning */
+            position: relative;
+            /* Apply the shadow using our CSS variable */
+            box-shadow: var(--sketch-shadow);
+        }
+        
+        /* PSEUDO-ELEMENT: Creates a second border layer for hand-drawn effect */
+        .sketch-border::before {
+            /* Required - without this the pseudo-element won't show */
+            content: "";
+            /* Position absolutely relative to parent (.sketch-border) */
+            position: absolute;
+            /* Position it 2px outside the parent on all sides */
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            /* Add another border (this creates the double border effect) */
+            border: 2px solid #000;
+            /* Make it semi-transparent so it looks sketchy */
+            opacity: 0.5;
+            /* Rotate slightly to look hand-drawn and imperfect */
+            transform: rotate(-1deg);
+            /* Don't block mouse clicks - allows clicking elements behind it */
+            pointer-events: none;
+        }
+        
+        /* ========================================
+           SKETCH BUTTON CLASS
+           Hand-drawn style buttons
+           ======================================== */
+        .sketch-button {
+            /* White background */
+            background-color: #fff;
+            /* Black border, 2px thick */
+            border: 2px solid #000;
+            /* Space inside the button (top/bottom 8px, left/right 15px) */
+            padding: 8px 15px;
+            /* Make text bold */
+            font-weight: bold;
+            /* Makes it behave like a button (can sit next to other elements) */
+            display: inline-block;
+            /* Required for transform effects to work */
+            position: relative;
+            /* Change cursor to pointer (hand) when hovering */
+            cursor: pointer;
+            /* Smooth animation when properties change (0.2 seconds) */
+            transition: all 0.2s;
+            /* Drop shadow effect - creates depth */
+            box-shadow: 3px 3px 0px rgba(0, 0, 0, 0.2);
+        }
+        
+        /* HOVER STATE: When mouse is over the button */
+        .sketch-button:hover {
+            /* Move button up 2 pixels (creates lift effect) */
+            transform: translateY(-2px);
+            /* Make shadow bigger to enhance lift effect */
+            box-shadow: 5px 5px 0px rgba(0, 0, 0, 0.2);
+        }
+        
+        /* ACTIVE STATE: When button is being clicked */
+        .sketch-button:active {
+            /* Move button down 1 pixel (creates press effect) */
+            transform: translateY(1px);
+            /* Make shadow smaller to enhance press effect */
+            box-shadow: 2px 2px 0px rgba(0, 0, 0, 0.2);
+        }
 
 
-
-
-
-
-
-
-/*============================================
-CSS Variables(Custom css properties)
-==============================================*/
-*{
-    /*hand-drawn border and shaddow effecs */
-    --sketch-border:2px solid #000;
-    --sketch-shadow:4px 4px0px rgba(0,0,0,0.2);
-    /* color palette - keeping ot simple with black and white*/
-    --primary-color:#000;
-    --background-color:#fff;
-    
-    /*Typography*/
-
-    --font-family:'Kalam', cursive;
-}
-
-/*============================================
-Global Styles===============================================*/
-body{
-    /* Set background color and add a subtle grid pattern*/
-    background-color:var(--background-color);
-    background-image:linear-gradient(rgba(255,255,255,0.8) 1px, transparent 1px), linear-gradient(90deg,rgba(255,255,2550.8) 1px, transparent 1px);
-    background-size:20px 20px;
-    padding: 15px;}
-
-/*============================================
-Hand-Drawn UI Components===============================================*/
-
-/*Sketchy border effect for containers*/
-.sketch-border{
-    border:var(--sketch-border);
-    position:relative;
-    box-shadow:var(--sketch-shadow);
-}
-
-/* Creates a second, slightly rotated border for hand drawn effect*/
-
-.sketch-border::before {
-    content:"";
-    position:absolute;
-    top:-2px;
-    left:-2px;
-    right:-2px;
-    bottom:-2px;
-    border:2px solid #000;
-    transform:rotate(-1deg);
-    pointer-events: none;
-}
-
-/*Hand-drawn button styles*/
-.sketchy-button{
-    background-color: var(--background-color);
-    border:2px solid #000;
-    padding: 8px 15px;
-    font-weight:bold;
-    display:inline-block;
-    position: relative;
-    cursor: pointer;
-    transition: all 0.2s;
-    box-shadow: 3px 3px 0px rgba(0,0,0,0.2);
-}
-
-/*Button hover effect - moves up slightly */
-.sketch-button:hover{
-    transform:translateY(1px);
-    box-shadow:2px 2px 0px rgba(0,0,0,0.2);
-}
+        /* ========================================
+           HEADER SECTION
+           Top navigation area
+           ======================================== */
+        .header {
+            /* Space below the header */
+            margin-bottom: 20px;
+            /* Space inside the header (top/bottom 10px, left/right 0) */
+            padding: 10px 0;
+            /* Use flexbox for layout */
+            display: flex;
+            /* Push content to the right side */
+            justify-content: flex-end;
+        }

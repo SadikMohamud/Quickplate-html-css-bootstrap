@@ -13,44 +13,113 @@
 </head>
 <body>
 
- <header>
-    <nav class="Navbar navbar-expand-lg">
-        <div class="container">
-            <!--Brand/Logo-->
-            <a href="" class="navbar-brand">Quickplate</a>
-            <!--Mobile toggle button-->
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#Navbar" aria-controls="false" aria-label="Toggle navigation">
-                <span class="navar-toggler-icon"></span>
-            </button>
-            <!--Collapsible content-->
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <a href="#" class="nav-link">Docs</a>
-                    </li>
-                    <li class="nav-items"><a href="#" class="nav-link">Login</a>
-                    </li>
-                    
-
-                </ul>
-            </div>
-
+ <!-- ========================================
+         HEADER SECTION
+         Contains navigation buttons
+         ======================================== -->
+    <div class="header">
+        <!-- Bootstrap utility classes: d-flex (flexbox) and gap-3 (space between items) -->
+        <div class="d-flex gap-3">
+            <!-- Documentation button -->
+            <button class="sketch-button">Docs</button>
+            <!-- Login button -->
+            <button class="sketch-button">Login</button>
         </div>
-       
-    </nav>
- </header>
-<main>
-    
+    </div>
 
-    </main>
-    <footer>
-         <ul id="social-networks">
-                    <li><a href="https://www.facebook.com/" targe="_blank" rel="noopener" aria-label="Visit our facebook(opens in a new tab)"><i class="fa-brands fa-facebook"></i></a></li>
-                    <li><a href="https://www.twitter.com/" targe="_blank" rel="noopener" aria-label="Visit our twitter(opens in a new tab)"><i class="fa-brands fa-twitter"></i></a></li>
-                    <li><a href="https://www.instagram.com/" targe="_blank" rel="noopener" aria-label="Visit our instagram(opens in a new tab)"><i class="fa-brands fa-instagram"></i></a></li>
-         </ul>
-    </footer>
+    <!-- ========================================
+         MAIN CONTENT SECTION
+         Contains the hero content and sign-up form
+         ======================================== -->
+    <div class="main-content">
+        <!-- Bootstrap container - centers content and adds padding -->
+        <div class="container">
+            <!-- Bootstrap row - creates a horizontal layout -->
+            <div class="row">
+                
+                <!-- LEFT COLUMN - Marketing Content -->
+                <!-- col-md-6 = 6 out of 12 columns (50% width) on medium+ screens -->
+                <!-- mb-4 = margin-bottom 4 units, mb-md-0 = no margin-bottom on medium+ screens -->
+                <div class="col-md-6 mb-4 mb-md-0">
+                    <!-- Main headline -->
+                    <h1 class="title">Text-only QR menus for modern restaurants</h1>
+                    <!-- Subheadline -->
+                    <p class="subtitle">Turn tables faster with cleaner ordering</p>
+                    
+                    <!-- Feature list with checkmarks -->
+                    <ul class="feature-list">
+                        <li>Easy setup in minutes</li>
+                        <li>No app downloads required</li>
+                        <li>Works on any smartphone</li>
+                        <li>Instant menu updates</li>
+                        <li>Increase table turnover</li>
+                    </ul>
+                    
+                    <!-- Call-to-action button section -->
+                    <div class="cta-section">
+                        <button class="sketch-button">Get Started Now</button>
+                    </div>
+                </div>
+                
+                <!-- RIGHT COLUMN - Sign Up Form -->
+                <!-- col-md-6 = 6 out of 12 columns (50% width) on medium+ screens -->
+                <div class="col-md-6">
+                    <!-- Form container with sketch border effect -->
+                    <div class="sketch-border sketch-form">
+                        <!-- Position relative needed for the hand-drawn-circle -->
+                        <div class="position-relative">
+                            <!-- Decorative circle behind the title -->
+                            <div class="hand-drawn-circle"></div>
+                            <!-- Form title -->
+                            <h2 class="title">Create your restaurant account</h2>
+                        </div>
+                        
+                        <!-- Decorative line separator -->
+                        <div class="sketch-line"></div>
+                        
+                        <!-- Sign-up form -->
+                        <form>
+                            <!-- Full name input field -->
+                            <input type="text" class="form-input" placeholder="Full name" required>
+                            
+                            <!-- Business email input field -->
+                            <input type="email" class="form-input" placeholder="Business email" required>
+                            
+                            <!-- Password input field -->
+                            <input type="password" class="form-input" placeholder="Password" required>
+                            
+                            <!-- Terms and conditions checkbox -->
+                            <div class="checkbox-container">
+                                <input type="checkbox" id="terms" required>
+                                <label for="terms">I agree to Terms</label>
+                            </div>
+                            
+                            <!-- Submit button - w-100 makes it full width -->
+                            <button type="submit" class="sketch-button w-100">Create account</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
+    <!-- ========================================
+         FOOTER SECTION
+         Contains privacy links
+         ======================================== -->
+    <div class="footer">
+        <!-- Decorative line above footer -->
+        <div class="sketch-line"></div>
+        
+        <!-- Footer links - Bootstrap utility classes for flexbox layout -->
+        <!-- d-flex = flexbox, justify-content-center = center horizontally, flex-wrap = wrap on small screens -->
+        <!-- mt-3 = margin-top 3 units -->
+        <div class="d-flex justify-content-center flex-wrap mt-3">
+            <a href="#">Privacy</a>
+            <a href="#">Terms</a>
+            <a href="#">Support</a>
+        </div>
+    </div>
 
 
 <!--bootstrap JS CDN-->
