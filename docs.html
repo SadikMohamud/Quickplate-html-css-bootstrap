@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Meta tags for proper document characterization -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documentation - Hand-drawn QR Menu Service</title>
+    
+    <!-- External CSS files -->
+    <!-- Bootstrap CSS for responsive layout and components -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Google Fonts for the hand-drawn font -->
+    <link href="https://fonts.googleapis.com/css2?family=Kalam:wght@300;400;700&display=swap" rel="stylesheet">
+    <!-- Custom CSS for hand-drawn styling -->
+    <link rel="stylesheet" href="./assets/css/styles.css">
+</head>
+<body>
+    <!-- Header Section -->
+    <!-- Contains navigation elements -->
+    <div class="header">
+        <!-- Bootstrap utility classes: d-flex (flexbox) and justify-content-between to space logo and buttons -->
+        <div class="d-flex justify-content-between align-items-center">
+            <!-- Logo on the left -->
+            <div class="logo">
+                <img src="./assets/images/logo.png" alt="Quickplate Logo" class="logo-img">
+            </div>
+            
+            <!-- Navigation buttons on the right -->
+            <div class="d-flex gap-3">
+                <!-- Documentation link -->
+                <a href="./docs.html" class="sketch-button">Docs</a>
+                <!-- Login button -->
+                <button class="sketch-button">Login</button>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Main Content Section -->
+    <!-- Contains the primary content of the page -->
+    <main class="main-content">
+        <div class="container">
+            <!-- Page title -->
+            <h1 class="title mb-4">Documentation</h1>
+            
+            <!-- Documentation navigation -->
+            <div class="row mb-5">
+                <div class="col-md-3">
+                    <div class="sketch-border p-3">
+                        <h3 class="subtitle">Table of Contents</h3>
+                        <ul class="feature-list">
+                            <li><a href="#getting-started">Getting Started</a></li>
+                            <li><a href="#creating-menu">Creating Your Menu</a></li>
+                            <li><a href="#customizing">Customizing Appearance</a></li>
+                            <li><a href="#analytics">Viewing Analytics</a></li>
+                            <li><a href="#api">API Reference</a></li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Documentation content -->
+                <div class="col-md-9">
+                    <!-- Getting Started Section -->
+                    <section id="getting-started" class="mb-5">
+                        <div class="sketch-border p-4">
+                            <h2 class="title">Getting Started</h2>
+                            <div class="sketch-line"></div>
+                            <p>Welcome to the QR Menu Service documentation. This guide will help you set up and customize your digital menu system.</p>
+                            
+                            <h3 class="subtitle mt-4">Creating Your Account</h3>
+                            <p>To get started, you'll need to create an account by filling out the registration form on our homepage. Once registered, you'll have access to your dashboard where you can manage your menus.</p>
+                            
+                            <h3 class="subtitle mt-4">Dashboard Overview</h3>
+                            <p>Your dashboard provides access to all the tools you need to manage your restaurant's digital menu. From here you can:</p>
+                            <ul class="feature-list">
+                                <li>Create and edit menu items</li>
+                                <li>Customize the appearance of your QR menu</li>
+                                <li>View analytics and customer engagement</li>
+                                <li>Manage multiple restaurant locations</li>
+                            </ul>
+                        </div>
+                    </section>
+                    
+                    <!-- Creating Menu Section -->
+                    <section id="creating-menu" class="mb-5">
+                        <div class="sketch-border p-4">
+                            <h2 class="title">Creating Your Menu</h2>
+                            <div class="sketch-line"></div>
+                            <p>Follow these steps to create your first digital menu:</p>
+                            
+                            <h3 class="subtitle mt-4">Step 1: Create Categories</h3>
+                            <p>Organize your menu into logical categories such as Appetizers, Main Courses, Desserts, etc.</p>
+                            
+                            <h3 class="subtitle mt-4">Step 2: Add Menu Items</h3>
+                            <p>For each category, add your menu items with descriptions and prices.</p>
+                            
+                            <h3 class="subtitle mt-4">Step 3: Generate QR Code</h3>
+                            <p>Once your menu is complete, generate a unique QR code that customers can scan to access your menu.</p>
+                        </div>
+                    </section>
+                    
+                    <!-- Customizing Section -->
+                    <section id="customizing" class="mb-5">
+                        <div class="sketch-border p-4">
+                            <h2 class="title">Customizing Appearance</h2>
+                            <div class="sketch-line"></div>
+                            <p>Personalize your QR menu to match your restaurant's brand:</p>
+                            
+                            <h3 class="subtitle mt-4">Color Schemes</h3>
+                            <p>Choose from pre-designed color schemes or create your own custom color palette.</p>
+                            
+                            <h3 class="subtitle mt-4">Typography</h3>
+                            <p>Select fonts that reflect your restaurant's style and personality.</p>
+                            
+                            <h3 class="subtitle mt-4">Layout Options</h3>
+                            <p>Choose from different layout options to best display your menu items.</p>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer Section -->
+    <!-- Contains links to additional resources -->
+    <footer class="footer">
+        <!-- Sketchy line divider -->
+        <div class="sketch-line"></div>
+        <!-- Footer links -->
+        <div class="d-flex justify-content-center flex-wrap mt-3">
+            <a href="#">Privacy</a>
+            <a href="#">Terms</a>
+            <a href="#">Support</a>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JavaScript Bundle -->
+    <!-- Includes Popper for dropdowns and other interactive components -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

@@ -1,4 +1,12 @@
-        /* ========================================
+      @import url('https://fonts.googleapis.com/css2?family=Kalam:wght@300;400;700&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Oswald:wght@200..700&family=Science+Gothic:wght@100..900&display=swap');
+
+
+
+
+
+
+
+/* ========================================
            CSS CUSTOM PROPERTIES (VARIABLES)
            Store reusable values for consistency
            ======================================== */
@@ -18,6 +26,17 @@
             font-family: 'Kalam', cursive;
             /* Make all text black */
             color: #000;
+        }
+        
+        /* ========================================
+           ANCHOR TAG STYLES
+           Override default link colors
+           ======================================== */
+        a {
+            /* Force all links to be black */
+            color: #000;
+            /* Remove default underline */
+            text-decoration: none;
         }
         
         /* ========================================
@@ -149,7 +168,7 @@
         }
 
          /* Each item in the feature list */
-        .feature-list li {
+        .feature-list li  {
             /* Space below each item */
             margin-bottom: 15px;
             /* Required for ::before pseudo-element positioning */
@@ -158,7 +177,27 @@
             padding-left: 30px;
             /* Slightly larger text */
             font-size: 1.1rem;
+            
         }
+       /* ===========================
+       anchor tag override===================*/
+        a {
+    color: #000;
+    text-decoration: none;
+}
+
+
+/*==========================
+logo ======================*/
+        .logo {
+    flex-shrink: 0;  /* Prevents logo from shrinking */
+}
+
+.logo-img {
+    display: block;
+    width: 200px;
+    height: auto;
+}
         
 
           /* PSEUDO-ELEMENT: Creates custom checkmark bullet */
@@ -173,6 +212,7 @@
             font-weight: bold;
             /* Make it bigger than the text */
             font-size: 1.3rem;
+            ;
         }
 
         /* ========================================
@@ -202,4 +242,122 @@
             outline: none;
             /* Add shadow effect when focused */
             box-shadow: 3px 3px 0px rgba(0, 0, 0, 0.2);
+        }
+
+          /* ========================================
+           CHECKBOX CONTAINER
+           Wrapper for checkbox and label
+           ======================================== */
+        .checkbox-container {
+            /* Use flexbox for layout */
+            display: flex;
+            /* Center items vertically */
+            align-items: center;
+            /* Space below the container */
+            margin-bottom: 15px;
+        }
+        
+        /* Checkbox input inside the container */
+        .checkbox-container input {
+            /* Space to the right of the checkbox */
+            margin-right: 10px;
+        }
+        
+        /* ========================================
+           FOOTER SECTION
+           Bottom of the page
+           ======================================== */
+        .footer {
+            /* Center all content */
+            text-align: center;
+            /* Space above the footer */
+            margin-top: 30px;
+        }
+        
+        /* Links in the footer */
+        .footer a {
+            /* Black text */
+            color: #000;
+            /* Underline the links */
+            text-decoration: underline;
+            /* Space around each link (top/bottom 0, left/right 10px) */
+            margin: 0 10px;
+        }
+
+         /* ========================================
+           TYPOGRAPHY CLASSES
+           ======================================== */
+        
+        /* Main title styling */
+        .title {
+            /* Large text */
+            font-size: 2rem;
+            /* Bold text */
+            font-weight: bold;
+            /* Space below */
+            margin-bottom: 15px;
+            /* Spacing between lines of text */
+            line-height: 1.2;
+        }
+        
+        /* Subtitle styling */
+        .subtitle {
+            /* Medium-large text */
+            font-size: 1.3rem;
+            /* Space below */
+            margin-bottom: 20px;
+        }
+
+
+          /* ========================================
+           SKETCH FORM
+           The form container
+           ======================================== */
+        .sketch-form {
+            /* Space inside the form */
+            padding: 20px;
+            /* Take up full height of its container */
+            height: 100%;
+        }
+        
+        /* ========================================
+           SKETCH LINE
+           Decorative horizontal line
+           ======================================== */
+        .sketch-line {
+            /* Line thickness */
+            height: 2px;
+            /* Black line */
+            background-color: #000;
+            /* Space above and below (15px top/bottom, 0 left/right) */
+            margin: 15px 0;
+            /* Required for ::before pseudo-element positioning */
+            position: relative;
+        }
+        
+
+          /* ========================================
+           SKETCH FORM
+           The form container
+           ======================================== */
+        .sketch-form {
+            /* Space inside the form */
+            padding: 20px;
+            /* Take up full height of its container */
+            height: 100%;
+        }
+        
+        /* ========================================
+           SKETCH LINE
+           Decorative horizontal line
+           ======================================== */
+        .sketch-line {
+            /* Line thickness */
+            height: 2px;
+            /* Black line */
+            background-color: #000;
+            /* Space above and below (15px top/bottom, 0 left/right) */
+            margin: 15px 0;
+            /* Required for ::before pseudo-element positioning */
+            position: relative;
         }
