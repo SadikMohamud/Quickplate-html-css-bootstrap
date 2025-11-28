@@ -147,3 +147,59 @@
             /* Remove default indentation */
             padding-left: 0;
         }
+
+         /* Each item in the feature list */
+        .feature-list li {
+            /* Space below each item */
+            margin-bottom: 15px;
+            /* Required for ::before pseudo-element positioning */
+            position: relative;
+            /* Make room on the left for the checkmark */
+            padding-left: 30px;
+            /* Slightly larger text */
+            font-size: 1.1rem;
+        }
+        
+
+          /* PSEUDO-ELEMENT: Creates custom checkmark bullet */
+        .feature-list li::before {
+            /* The checkmark character */
+            content: "✓";
+            /* Position absolutely relative to the li */
+            position: absolute;
+            /* Place it on the far left */
+            left: 0;
+            /* Make it bold */
+            font-weight: bold;
+            /* Make it bigger than the text */
+            font-size: 1.3rem;
+        }
+
+        /* ========================================
+           FORM INPUT FIELDS
+           Text boxes, email, password inputs
+           ======================================== */
+        .form-input {
+            /* Take up full width of container */
+            width: 100%;
+            /* Space inside the input box */
+            padding: 10px;
+            /* Space below each input */
+            margin-bottom: 15px;
+            /* Black border, 2px thick */
+            border: 2px solid #000;
+            /* See-through background (shows grid pattern behind) */
+            background-color: transparent;
+            /* Use handwritten font */
+            font-family: 'Kalam', cursive;
+            /* Text size */
+            font-size: 1rem;
+        }
+        
+        /* FOCUS STATE: When user clicks into the input field */
+        .form-input:focus {
+            /* Remove default blue outline that browsers add */
+            outline: none;
+            /* Add shadow effect when focused */
+            box-shadow: 3px 3px 0px rgba(0, 0, 0, 0.2);
+        }
