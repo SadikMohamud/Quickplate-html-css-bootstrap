@@ -128,3 +128,22 @@
             /* Push content to the right side */
             justify-content: flex-end;
         }
+
+          /* ========================================
+           MAIN CONTENT AREA
+           ======================================== */
+        .main-content {
+            /* Space below the main content */
+            margin-bottom: 30px;
+        }
+
+          /* ========================================
+           FEATURE LIST
+           Bulleted list of features
+           ======================================== */
+        .feature-list {
+            /* Remove default bullet points */
+            list-style-type: none;
+            /* Remove default indentation */
+            padding-left: 0;
+        }
