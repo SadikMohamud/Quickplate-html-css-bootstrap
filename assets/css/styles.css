@@ -57,17 +57,6 @@
             padding: 15px;
         }
 
-            /* Prevent horizontal overflow */
-        body, html {
-            overflow-x: hidden;
-            max-width: 100%;
-         }
-
-            /* Make sure containers don't overflow */
-       .container, .row {
-            max-width: 100%;
-            overflow-x: hidden;
-         }
         
         /* ========================================
            SKETCH BORDER CLASS
@@ -102,7 +91,6 @@
             /* Don't block mouse clicks - allows clicking elements behind it */
             pointer-events: none;
               
-            overflow: hidden; /* Clip the pseudo-element */
               
               
         }
