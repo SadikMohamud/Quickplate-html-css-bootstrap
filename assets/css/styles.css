@@ -1,12 +1,8 @@
-      @import url('https://fonts.googleapis.com/css2?family=Kalam:wght@300;400;700&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Oswald:wght@200..700&family=Science+Gothic:wght@100..900&display=swap');
+         /*=========================================
+          google fonts 'Kalam' font impot*/
+         @import url('https://fonts.googleapis.com/css2?family=Kalam:wght@300;400;700&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Oswald:wght@200..700&family=Science+Gothic:wght@100..900&display=swap');
 
-
-
-
-
-
-
-/* ========================================
+          /* ========================================
            CSS CUSTOM PROPERTIES (VARIABLES)
            Store reusable values for consistency
            ======================================== */
@@ -29,7 +25,7 @@
         }
         
         /* ========================================
-           ANCHOR TAG STYLES
+           ANCHORR TAG STYLES
            Override default link colors
            ======================================== */
         a {
@@ -289,6 +285,75 @@
             /* Space around each link (top/bottom 0, left/right 10px) */
             margin: 0 10px;
         }
+
+
+
+        /* ========================================
+           TECH STACK SECTION IN FOOTER
+           ======================================== */
+
+       .tech-stack {
+               margin: 30px 0;
+                text-align: center;
+        }
+
+       .tech-title {
+          font-size: 1.5rem;
+          font-weight: bold;
+          margin-bottom: 20px;
+        }
+
+        /* Container for all tech icons */
+     .tech-icons {
+         display: flex;
+          justify-content: center;
+           align-items: center;
+            gap: 40px;
+           flex-wrap: wrap;
+        }
+
+/* Each individual tech item */
+.tech-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Style the tech icons */
+.tech-item img {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+    transition: transform 0.3s ease;
+}
+
+/* Hover effect on icons */
+.tech-item img:hover {
+    transform: scale(1.1);
+}
+
+/* Label text under icons */
+.tech-item span {
+    font-size: 0.9rem;
+    font-weight: bold;
+}
+
+/* Mobile responsive */
+@media (max-width: 767px) {
+    .tech-icons {
+        gap: 30px;
+    }
+    
+    .tech-item img {
+        width: 60px;
+        height: 60px;
+    }
+    
+    .tech-title {
+        font-size: 1.2rem;
+    }
+}
 
          /* ========================================
            TYPOGRAPHY CLASSES
