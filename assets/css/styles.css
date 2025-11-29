@@ -56,6 +56,18 @@
             /* Space around the entire page content */
             padding: 15px;
         }
+
+            /* Prevent horizontal overflow */
+        body, html {
+            overflow-x: hidden;
+            max-width: 100%;
+         }
+
+            /* Make sure containers don't overflow */
+       .container, .row {
+            max-width: 100%;
+            overflow-x: hidden;
+         }
         
         /* ========================================
            SKETCH BORDER CLASS
@@ -89,6 +101,10 @@
             transform: rotate(-1deg);
             /* Don't block mouse clicks - allows clicking elements behind it */
             pointer-events: none;
+              
+            overflow: hidden; /* Clip the pseudo-element */
+              
+              
         }
         
         /* ========================================
@@ -321,6 +337,8 @@
             /* Take up full height of its container */
             height: 100%;
         }
+
+
         
         /* ========================================
            SKETCH LINE
@@ -363,3 +381,29 @@
             /* Required for ::before pseudo-element positioning */
             position: relative;
         }
+
+
+          @media (max-width: 767px) {
+    .sketch-button {
+        font-size: 0.9rem;
+        padding: 6px 12px;
+    }
+    
+    .title {
+        font-size: 1.5rem;
+    }
+    
+    .subtitle {
+        font-size: 1.1rem;
+    }
+          }
+
+    @media (max-width: 767px) {
+    .sketch-form {
+        padding: 15px;
+    }
+    
+    body {
+        padding: 10px;
+    }
+    }
