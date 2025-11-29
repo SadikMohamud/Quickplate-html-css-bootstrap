@@ -288,73 +288,194 @@
 
 
 
-        /* ========================================
-           TECH STACK SECTION IN FOOTER
-           ======================================== */
+       /* ========================================
+   TECH STACK SECTION IN FOOTER - COMPACT VERSION
+   Educational comments included for learning
+   ======================================== */
 
-       .tech-stack {
-               margin: 30px 0;
-                text-align: center;
-        }
-
-       .tech-title {
-          font-size: 1.5rem;
-          font-weight: bold;
-          margin-bottom: 20px;
-        }
-
-        /* Container for all tech icons */
-     .tech-icons {
-         display: flex;
-          justify-content: center;
-           align-items: center;
-            gap: 40px;
-           flex-wrap: wrap;
-        }
-
-/* Each individual tech item */
-.tech-item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 10px;
+/* Main container for the entire tech stack section */
+.tech-stack {
+    /* margin: top right bottom left */
+    /* Reduced top margin (20px) and bottom margin (15px) to make footer smaller */
+    margin: 20px 0 15px 0;
+    
+    /* Centers all content horizontally within this container */
+    text-align: center;
 }
 
-/* Style the tech icons */
+/* The "Made With" or "Built With" heading */
+.tech-title {
+    /* Font size - rem units scale based on root font size (usually 16px) */
+    /* 1.2rem = 1.2 × 16px = 19.2px */
+    font-size: 1.2rem;
+    
+    /* Makes the text bold/heavy */
+    font-weight: bold;
+    
+    /* Space below the title before the icons appear */
+    /* Reduced from 20px to 15px for more compact look */
+    margin-bottom: 15px;
+}
+
+/* Container that holds all three technology icons (HTML, CSS, Bootstrap) */
+.tech-icons {
+    /* FLEXBOX - Modern layout method */
+    /* Arranges children (tech-item) in a flexible row/column */
+    display: flex;
+    
+    /* Centers items horizontally along the main axis */
+    justify-content: center;
+    
+    /* Centers items vertically along the cross axis */
+    align-items: center;
+    
+    /* Space between each tech icon */
+    /* Reduced from 40px to 25px for tighter spacing */
+    gap: 25px;
+    
+    /* Allows items to wrap to next line on small screens */
+    /* Without this, icons would squish together on mobile */
+    flex-wrap: wrap;
+}
+
+/* Each individual technology item (icon + label combo) */
+.tech-item {
+    /* FLEXBOX - Each item is also a flex container */
+    display: flex;
+    
+    /* Stack icon and label vertically (column direction) */
+    /* Default is 'row' (horizontal) */
+    flex-direction: column;
+    
+    /* Center the icon and label horizontally within this item */
+    align-items: center;
+    
+    /* Space between icon and label text */
+    /* Reduced from 10px to 5px for compact look */
+    gap: 5px;
+}
+
+/* The actual icon images (HTML5, CSS3, Bootstrap logos) */
 .tech-item img {
-    width: 80px;
-    height: 80px;
+    /* FIXED SIZE - Makes all icons uniform */
+    /* Reduced from 80px to 50px for smaller appearance */
+    width: 50px;
+    height: 50px;
+    
+    /* Maintains image aspect ratio within the width/height constraints */
+    /* 'contain' = entire image fits inside, may have empty space */
+    /* Alternative: 'cover' would fill space but might crop image */
     object-fit: contain;
+    
+    /* SMOOTH ANIMATION - Transition creates smooth effects */
+    /* When transform changes (on hover), animate over 0.3 seconds */
+    /* 'ease' = starts slow, speeds up, then slows down at end */
     transition: transform 0.3s ease;
 }
 
-/* Hover effect on icons */
+/* Hover state - What happens when mouse is over an icon */
 .tech-item img:hover {
+    /* TRANSFORM - Changes element appearance without affecting layout */
+    /* scale(1.1) = makes image 10% larger (1.1 × original size) */
+    /* Creates a subtle "pop" effect when hovering */
     transform: scale(1.1);
 }
 
-/* Label text under icons */
+/* Label text that appears below each icon (e.g., "HTML5", "CSS3") */
 .tech-item span {
-    font-size: 0.9rem;
+    /* Font size in rem units */
+    /* 0.75rem = 0.75 × 16px = 12px (small text) */
+    font-size: 0.75rem;
+    
+    /* Makes the label text bold for better readability */
     font-weight: bold;
 }
 
-/* Mobile responsive */
+/* The entire footer section container */
+.footer {
+    /* Centers all footer content horizontally */
+    text-align: center;
+    
+    /* Space above the footer (separates from main content) */
+    /* Reduced from 50px to 40px for more compact layout */
+    margin-top: 40px;
+    
+    /* Space at the bottom of footer (gives breathing room at page end) */
+    padding-bottom: 20px;
+}
+
+/* The row of footer links (Privacy, Terms, Support) */
+/* Targets any element with class 'd-flex' that's inside .footer */
+.footer .d-flex {
+    /* Space above the links row */
+    /* Reduced from Bootstrap's mt-3 (≈16px) to 15px */
+    margin-top: 15px;
+    
+    /* No space below links (flush with footer bottom) */
+    margin-bottom: 0;
+}
+
+/* ========================================
+   MEDIA QUERY - MOBILE RESPONSIVE ADJUSTMENTS
+   Only applies when screen width is 767px or less (phones)
+   ======================================== */
 @media (max-width: 767px) {
+    /* Reduce spacing between icons on small screens */
     .tech-icons {
-        gap: 30px;
+        /* Even tighter spacing on mobile (25px → 20px) */
+        /* Prevents icons from wrapping too early */
+        gap: 20px;
     }
     
+    /* Make icons even smaller on mobile devices */
     .tech-item img {
-        width: 60px;
-        height: 60px;
+        /* 50px → 40px for mobile screens */
+        /* Smaller icons = more screen real estate for content */
+        width: 40px;
+        height: 40px;
     }
     
+    /* Smaller "Made With" title on mobile */
     .tech-title {
-        font-size: 1.2rem;
+        /* 1.2rem → 1rem (16px) */
+        font-size: 1rem;
+    }
+    
+    /* Smaller label text on mobile */
+    .tech-item span {
+        /* 0.75rem → 0.7rem (about 11px) */
+        font-size: 0.7rem;
+    }
+    
+    /* Less space above footer on mobile */
+    .footer {
+        /* 40px → 30px saves vertical space on small screens */
+        margin-top: 30px;
     }
 }
 
+/* ========================================
+   WHY THESE SIZES?
+   
+   Desktop Icons: 50px
+   - Large enough to see details in logos
+   - Small enough to not dominate footer
+   - Standard size for footer tech badges
+   
+   Mobile Icons: 40px
+   - Maintains visibility on small screens
+   - Conserves vertical space (mobile users scroll more)
+   - Still touch-friendly (min 44px is iOS standard, we're close)
+   
+   Gap Spacing: 25px → 20px
+   - Prevents awkward wrapping on medium screens
+   - Keeps icons visually grouped as a unit
+   
+   Margins: Reduced throughout
+   - Footer was taking too much vertical space
+   - Modern design trend = compact footers
+   - Leaves more room for main content
+   ======================================== */
          /* ========================================
            TYPOGRAPHY CLASSES
            ======================================== */
