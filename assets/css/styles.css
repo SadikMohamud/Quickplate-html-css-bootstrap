@@ -383,12 +383,29 @@
         }
 
 
-          @media (max-width: 767px) {
+          /* ========================================
+   MOBILE RESPONSIVE ADJUSTMENTS
+   ======================================== */
+
+/* Small devices (phones, less than 768px) */
+@media (max-width: 767px) {
+    /* Reduce body padding */
+    body {
+        padding: 10px;
+    }
+    
+    /* Reduce form padding */
+    .sketch-form {
+        padding: 15px;
+    }
+    
+    /* Smaller buttons */
     .sketch-button {
         font-size: 0.9rem;
         padding: 6px 12px;
     }
     
+    /* Smaller titles */
     .title {
         font-size: 1.5rem;
     }
@@ -396,14 +413,29 @@
     .subtitle {
         font-size: 1.1rem;
     }
-          }
+    
+    /* Smaller logo on mobile */
+    .logo-img {
+        width: 60px;
+    }
+}
 
-    @media (max-width: 767px) {
-    .sketch-form {
-        padding: 15px;
+/* Medium devices (tablets, 768px and up) - Your existing media query */
+@media (min-width: 768px) {
+    .title {
+        font-size: 2.5rem;
     }
     
-    body {
-        padding: 10px;
+    .subtitle {
+        font-size: 1.5rem;
     }
+}
+
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+    /* Center content and limit max width on very large screens */
+    .container {
+        max-width: 1140px;
+        margin: 0 auto;
     }
+}
