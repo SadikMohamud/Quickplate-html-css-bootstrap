@@ -182,22 +182,24 @@
        /* ===========================
        anchor tag override===================*/
         a {
-    color: #000;
-    text-decoration: none;
-}
+           color: #000;
+           text-decoration: none; 
+        }
 
 
-/*==========================
-logo ======================*/
-        .logo {
-    flex-shrink: 0;  /* Prevents logo from shrinking */
-}
+     /*==========================
+     logo ======================*/
+      .logo {
+          flex-shrink: 0;  /* Prevents logo from shrinking */
+           margin-right: auto; /* Pushes logo to the far left */
+        }
 
-.logo-img {
-    display: block;
-    width: 200px;
-    height: auto;
-}
+       .logo-img {
+         display: block;
+         width: 80px;  /* Made smaller - adjust this number */
+         height: auto;
+         max-width: 100%;  /* Ensures it doesn't overflow on mobile */
+       }
         
 
           /* PSEUDO-ELEMENT: Creates custom checkmark bullet */
