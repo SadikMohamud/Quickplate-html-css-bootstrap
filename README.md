@@ -17,20 +17,20 @@ This is a learning project for Code Institute where I explored Bootstrap framewo
 - Mobile-friendly layout with Bootstrap grid
 
 ### Sign-Up Form
-![Sign Up Form](assets/images/Screenshots/sign_up_form.png)
+![Sign Up Form](assets/Screenshots/sign_up_form.png)
 
 The form features a custom sketch border effect created with CSS pseudo-elements.
 
 ### Mobile Responsive
-![Mobile View](assets/images/Screenshots/mobile_first_design.jpg)
+![Mobile View](assets/Screenshots/mobile_first_design.jpg)
 
 Fully responsive design that adapts to all screen sizes.
 
-![Mobile Responsiveness](assets/images/Screenshots/mobile_responsiveness.png)
+![Mobile Responsiveness](assets/Screenshots/mobile_responsiveness.png)
 
 ## Technologies Used
 
-![Tech Stack](assets/images/Screenshots/CSS_fonts_import.png)
+![Tech Stack](assets/Screenshots/CSS_fonts_import.png)
 
 - **HTML5** - Page structure
 - **CSS3** - Custom styling and effects
@@ -40,7 +40,7 @@ Fully responsive design that adapts to all screen sizes.
 ## Design Details
 
 ### Custom Border Effect
-![Sketch Border Detail](assets/images/Screenshots/pseudo_elements_double_sketch_border.png)
+![Sketch Border Detail](assets/Screenshots/pseudo_elements_double_sketch_border.png)
 
 The signature hand-drawn border uses CSS `::before` pseudo-elements with rotation to create an imperfect, sketchy look.
 
