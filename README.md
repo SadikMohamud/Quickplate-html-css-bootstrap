@@ -1,6 +1,6 @@
 Quickplate
 A QR menu service landing page with a hand-drawn aesthetic. This project recreates a prototype I built previously, now using Bootstrap for the first time.
-(assets/Screenshots/laptop.png)
+assets/Screenshots/laptop.png
 About This Project
 This is a learning project for Code Institute where I explored Bootstrap framework. The design features a sketch-style interface that makes it feel handcrafted and approachable for restaurant owners.
 What I Built
