@@ -3,7 +3,7 @@ https://sadikmohamud.github.io/Quickplate-html-css-bootstrap/index.html
 
 A QR menu service landing page with a hand-drawn aesthetic. This project recreates a prototype I built previously, now using Bootstrap for the first time.
 
-![Homepage Screenshot](assets/images/Screenshots/laptop.png)
+![Homepage Screenshot](assets/Screenshots/laptop.png)
 
 ## About This Project
 
