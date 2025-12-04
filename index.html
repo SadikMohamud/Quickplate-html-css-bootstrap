@@ -1,164 +1,136 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Quickplate by SNURM</title>
 
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="assets/images/Logo.png" />
 
-<!-- Favicon -->
-    <link rel="icon" type="image/png" href="assets/images/Logo.png">
-    <link rel="apple-touch-icon" href="assets/images/Logo.png">
-    <link rel="shortcut icon" href="assets/images/Logo.png">
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" />
 
-    
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-    <link rel="stylesheet" href="./assets/css/styles.css">
-
-
-    <title>Quickplate by SNURM</title>
-
+  <!-- Custom Styles -->
+  <link rel="stylesheet" href="assets/css/styles.css" />
 </head>
-<body>
 
- <!-- ========================================
-         HEADER SECTION
-         Contains navigation buttons
-         ======================================== -->
-    <div class="header">
-        <!-- Bootstrap utility classes: d-flex (flexbox) and justify-content-between to space logo and buttons -->
-        <div class="d-flex justify-content-between align-items-center">
-            <!-- Logo on the left -->
-            <div class="logo">
-                <img src="assets/images/Logo.png" alt="Quickplate Logo" class="logo-img">
+<body class="glass-morphism">
+
+  <!-- ===========================
+       HEADER
+  ============================ -->
+  <header class="header">
+    <div class="container d-flex justify-content-between align-items-center">
+      <!-- Logo -->
+      <div class="logo">
+        <img src="assets/images/Logo.png" alt="Quickplate Logo" class="logo-img" />
+      </div>
+
+      <!-- Navigation -->
+      <nav class="d-flex gap-3">
+        <a href="docs.html" class="sketch-button">Docs</a>
+        <a href="more-info.html" class="sketch-button">More Info</a>
+        <button class="sketch-button">Login</button>
+      </nav>
+    </div>
+  </header>
+
+
+  <!-- ===========================
+       MAIN CONTENT
+  ============================ -->
+  <main class="main-content">
+    <div class="container">
+      <div class="row">
+
+        <!-- LEFT COLUMN -->
+        <section class="col-md-6 mb-4 mb-md-0">
+          <h1 class="title">Text-only QR menus for modern restaurants</h1>
+          <p class="subtitle">Turn tables faster with cleaner ordering</p>
+
+          <ul class="feature-list">
+            <li>Easy setup in minutes</li>
+            <li>No app downloads required</li>
+            <li>Works on any smartphone</li>
+            <li>Instant menu updates</li>
+            <li>Increase table turnover</li>
+          </ul>
+
+          <div class="cta-section">
+            <a href="more-info.html" class="sketch-button">More Info</a>
+          </div>
+        </section>
+
+        <!-- RIGHT COLUMN: FORM -->
+        <aside class="col-md-6">
+          <div class="sketch-border sketch-form">
+            <div class="position-relative">
+              <div class="hand-drawn-circle" aria-hidden="true"></div>
+              <h2 class="title">Create your restaurant account</h2>
             </div>
-            
-            <!-- Navigation buttons on the right -->
-            <div class="d-flex gap-3">
-                <!-- Documentation link -->
-                <a href="./docs.html" class="sketch-button">Docs</a>
-                <!-- Login button -->
-                <button class="sketch-button">Login</button>
-            </div>
+
+            <div class="sketch-line"></div>
+
+            <form>
+              <input type="text" class="form-input" placeholder="Full name" required />
+              <input type="email" class="form-input" placeholder="Business email" required />
+              <input type="password" class="form-input" placeholder="Password" required />
+
+              <div class="checkbox-container">
+                <input type="checkbox" id="terms" required />
+                <label for="terms">I agree to Terms</label>
+              </div>
+
+              <button type="submit" class="sketch-button w-100">Create account</button>
+            </form>
+          </div>
+        </aside>
+
+      </div>
+    </div>
+  </main>
+
+
+  <!-- ===========================
+       FOOTER
+  ============================ -->
+  <footer class="footer">
+    <div class="sketch-line" aria-hidden="true"></div>
+
+    <div class="tech-stack">
+      <h3 class="tech-title">Built with</h3>
+
+      <div class="tech-icons">
+
+        <div class="tech-item">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/html5/html5-original-wordmark.svg" alt="HTML5" loading="lazy" />
+          <span>HTML5</span>
         </div>
+
+        <div class="tech-item">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/css3/css3-original-wordmark.svg" alt="CSS3" loading="lazy" />
+          <span>CSS3</span>
+        </div>
+
+        <div class="tech-item">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/bootstrap/bootstrap-original-wordmark.svg" alt="Bootstrap" loading="lazy" />
+          <span>Bootstrap</span>
+        </div>
+
+      </div>
     </div>
 
-    <!-- ========================================
-         MAIN CONTENT SECTION
-         Contains the hero content and sign-up form
-         ======================================== -->
-    <div class="main-content">
-        <!-- Bootstrap container - centers content and adds padding -->
-        <div class="container">
-            <!-- Bootstrap row - creates a horizontal layout -->
-            <div class="row">
-                
-                <!-- LEFT COLUMN - Marketing Content -->
-                <!-- col-md-6 = 6 out of 12 columns (50% width) on medium+ screens -->
-                <!-- mb-4 = margin-bottom 4 units, mb-md-0 = no margin-bottom on medium+ screens -->
-                <div class="col-md-6 mb-4 mb-md-0">
-                    <!-- Main headline -->
-                    <h1 class="title">Text-only QR menus for modern restaurants</h1>
-                    <!-- Subheadline -->
-                    <p class="subtitle">Turn tables faster with cleaner ordering</p>
-                    
-                    <!-- Feature list with checkmarks -->
-                    <ul class="feature-list">
-                        <li>Easy setup in minutes</li>
-                        <li>No app downloads required</li>
-                        <li>Works on any smartphone</li>
-                        <li>Instant menu updates</li>
-                        <li>Increase table turnover</li>
-                    </ul>
-                    
-                    <!-- Call-to-action button section -->
-                    <div class="cta-section">
-                        <button class="sketch-button">More Info</button>
-                    </div>
-                </div>
-                
-                <!-- RIGHT COLUMN - Sign Up Form -->
-                <!-- col-md-6 = 6 out of 12 columns (50% width) on medium+ screens -->
-                <div class="col-md-6">
-                    <!-- Form container with sketch border effect -->
-                    <div class="sketch-border sketch-form">
-                        <!-- Position relative needed for the hand-drawn-circle -->
-                        <div class="position-relative">
-                            <!-- Decorative circle behind the title -->
-                            <div class="hand-drawn-circle"></div>
-                            <!-- Form title -->
-                            <h2 class="title">Create your restaurant account</h2>
-                        </div>
-                        
-                        <!-- Decorative line separator -->
-                        <div class="sketch-line"></div>
-                        
-                        <!-- Sign-up form -->
-                        <form>
-                            <!-- Full name input field -->
-                            <input type="text" class="form-input" placeholder="Full name" required>
-                            
-                            <!-- Business email input field -->
-                            <input type="email" class="form-input" placeholder="Business email" required>
-                            
-                            <!-- Password input field -->
-                            <input type="password" class="form-input" placeholder="Password" required>
-                            
-                            <!-- Terms and conditions checkbox -->
-                            <div class="checkbox-container">
-                                <input type="checkbox" id="terms" required>
-                                <label for="terms">I agree to Terms</label>
-                            </div>
-                            
-                            <!-- Submit button - w-100 makes it full width -->
-                            <button type="submit" class="sketch-button w-100">Create account</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
+    <div class="d-flex justify-content-center flex-wrap mt-3">
+      <a href="#" class="mx-2">Privacy</a>
+      <a href="#" class="mx-2">Terms</a>
+      <a href="docs.html" class="mx-2">Support</a>
     </div>
-     <!-- ========================================
-         FOOTER SECTION
-         Contains tech stack and privacy links
-         ======================================== -->
-    <div class="footer">
-        <div class="sketch-line"></div>
-        
-        <!-- Tech Stack Section -->
-        <div class="ech-stack">
-            <h3 class="tech-title">Built with</h3>
-            <div class="tech-icons">
-                <!-- HTML5 -->
-                <div class="tech-item">
-                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/html5/html5-original-wordmark.svg" alt="HTML5" />
-                    <span>HTML5</span>
-                </div>
-                
-                <!-- CSS3 -->
-                <div class="tech-item">
-                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/css3/css3-original-wordmark.svg" alt="CSS3" />
-                    <span>CSS3</span>
-                </div>
-                
-                <!-- Bootstrap -->
-                <div class="tech-item">
-                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/bootstrap/bootstrap-original-wordmark.svg" alt="Bootstrap" />
-                    <span>Bootstrap</span>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Footer links -->
-        <div class="d-flex justify-content-center flex-wrap mt-3">
-            <a href="#">Privacy</a>
-            <a href="#">Terms</a>
-            <a href="./docs.html">Support</a>
-        </div>
-    </div>
-    
-<!--bootstrap JS CDN-->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoA6V6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous"></script>
-<!--Font-Awesome--->
-    <script src="https://kit.fontawesome.com/9783282e87.js" crossorigin="anonymous"></script>
+  </footer>
+
+
+  <!-- Bootstrap Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+
 </body>
 </html>
