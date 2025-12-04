@@ -1,560 +1,439 @@
-         /*=========================================
-          google fonts 'Kalam' font impot*/
-         @import url('https://fonts.googleapis.com/css2?family=Kalam:wght@300;400;700&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Oswald:wght@200..700&family=Science+Gothic:wght@100..900&display=swap');
+/* 
+===========================================================
+ QUICKPLATE MASTER STYLESHEET (CLEAN VERSION)
+ Includes:
+ - Mobile + Tablet: Colored doodle background image
+ - Laptop + Desktop: Sketch paper background image
+ - Glassmorphism overlay
+ - Sketch borders
+ - Responsive logo sizes
+ - Fredoka headers + Kalam body
+ - Fade-in feature list
+===========================================================
+*/
 
-          /* ========================================
-           CSS CUSTOM PROPERTIES (VARIABLES)
-           Store reusable values for consistency
-           ======================================== */
-        :root {
-            /* Border style for sketchy elements - 2px thick solid black line */
-            --sketch-border: 2px solid #000;
-            /* Shadow for sketchy elements - creates depth effect */
-            --sketch-shadow: 4px 4px 0px rgba(0, 0, 0, 0.2);
-        }
-        
-        /* ========================================
-           UNIVERSAL SELECTOR
-           Applies to ALL elements on the page
-           ======================================== */
-        * {
-            /* Apply handwritten font to everything */
-            font-family: 'Kalam', cursive;
-            /* Make all text black */
-            color: #000;
-        }
-        
-        /* ========================================
-           ANCHORR TAG STYLES
-           Override default link colors
-           ======================================== */
-        a {
-            /* Force all links to be black */
-            color: #000;
-            /* Remove default underline */
-            text-decoration: none;
-        }
-        
-        /* ========================================
-           BODY STYLES
-           Background and overall page setup
-           ======================================== */
-        body {
-            /* White background color */
-            background-color: #fff;
-            /* Creates a subtle grid pattern using CSS gradients */
-            /* First gradient = horizontal lines, second = vertical lines */
-            background-image: 
-                linear-gradient(rgba(255,255,255,0.8) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255,255,255,0.8) 1px, transparent 1px);
-            /* Size of each grid square - 20px by 20px */
-            background-size: 20px 20px;
-            /* Space around the entire page content */
-            padding: 15px;
-        }
+/* ===== IMPORT FONTS ===== */
 
-        
-        /* ========================================
-           SKETCH BORDER CLASS
-           Creates a hand-drawn border effect
-           ======================================== */
-        .sketch-border {
-            /* Apply the border using our CSS variable */
-            border: var(--sketch-border);
-            /* Required for pseudo-element positioning */
-            position: relative;
-            /* Apply the shadow using our CSS variable */
-            box-shadow: var(--sketch-shadow);
-        }
-        
-        /* PSEUDO-ELEMENT: Creates a second border layer for hand-drawn effect */
-        .sketch-border::before {
-            /* Required - without this the pseudo-element won't show */
-            content: "";
-            /* Position absolutely relative to parent (.sketch-border) */
-            position: absolute;
-            /* Position it 2px outside the parent on all sides */
-            top: -2px;
-            left: -2px;
-            right: -2px;
-            bottom: -2px;
-            /* Add another border (this creates the double border effect) */
-            border: 2px solid #000;
-            /* Make it semi-transparent so it looks sketchy */
-            opacity: 0.5;
-            /* Rotate slightly to look hand-drawn and imperfect */
-            transform: rotate(-1deg);
-            /* Don't block mouse clicks - allows clicking elements behind it */
-            pointer-events: none;
-              
-              
-              
-        }
-        
-        /* ========================================
-           SKETCH BUTTON CLASS
-           Hand-drawn style buttons
-           ======================================== */
-        .sketch-button {
-            /* White background */
-            background-color: #fff;
-            /* Black border, 2px thick */
-            border: 2px solid #000;
-            /* Space inside the button (top/bottom 8px, left/right 15px) */
-            padding: 8px 15px;
-            /* Make text bold */
-            font-weight: bold;
-            /* Makes it behave like a button (can sit next to other elements) */
-            display: inline-block;
-            /* Required for transform effects to work */
-            position: relative;
-            /* Change cursor to pointer (hand) when hovering */
-            cursor: pointer;
-            /* Smooth animation when properties change (0.2 seconds) */
-            transition: all 0.2s;
-            /* Drop shadow effect - creates depth */
-            box-shadow: 3px 3px 0px rgba(0, 0, 0, 0.2);
-        }
-        
-        /* HOVER STATE: When mouse is over the button */
-        .sketch-button:hover {
-            /* Move button up 2 pixels (creates lift effect) */
-            transform: translateY(-2px);
-            /* Make shadow bigger to enhance lift effect */
-            box-shadow: 5px 5px 0px rgba(0, 0, 0, 0.2);
-        }
-        
-        /* ACTIVE STATE: When button is being clicked */
-        .sketch-button:active {
-            /* Move button down 1 pixel (creates press effect) */
-            transform: translateY(1px);
-            /* Make shadow smaller to enhance press effect */
-            box-shadow: 2px 2px 0px rgba(0, 0, 0, 0.2);
-        }
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Kalam:wght@300;400;700&display=swap');
 
 
-        /* ========================================
-           HEADER SECTION
-           Top navigation area
-           ======================================== */
-        .header {
-            /* Space below the header */
-            margin-bottom: 20px;
-            /* Space inside the header (top/bottom 10px, left/right 0) */
-            padding: 10px 0;
-            /* Use flexbox for layout */
-            display: flex;
-            /* Push content to the right side */
-            justify-content: flex-end;
-        }
+/* ===========================================================
+   ROOT VARIABLES (DEFAULT = MOBILE/TABLET ORANGE THEME)
+=========================================================== */
 
-          /* ========================================
-           MAIN CONTENT AREA
-           ======================================== */
-        .main-content {
-            /* Space below the main content */
-            margin-bottom: 30px;
-        }
+:root {
+  --accent: #FF7A00;
+  --accent-soft: rgba(255, 122, 0, 0.15);
+  --line-color: #FF7A00;
+  --checkmark-color: #FF7A00;
+  --link-color: #FF7A00;
 
-          /* ========================================
-           FEATURE LIST
-           Bulleted list of features
-           ======================================== */
-        .feature-list {
-            /* Remove default bullet points */
-            list-style-type: none;
-            /* Remove default indentation */
-            padding-left: 0;
-        }
-
-         /* Each item in the feature list */
-        .feature-list li  {
-            /* Space below each item */
-            margin-bottom: 15px;
-            /* Required for ::before pseudo-element positioning */
-            position: relative;
-            /* Make room on the left for the checkmark */
-            padding-left: 30px;
-            /* Slightly larger text */
-            font-size: 1.1rem;
-            
-        }
-       /* ===========================
-       anchor tag override===================*/
-        a {
-           color: #000;
-           text-decoration: none; 
-        }
-
-
-     /*==========================
-     logo ======================*/
-      .logo {
-          flex-shrink: 0;  /* Prevents logo from shrinking */
-           margin-right: auto; /* Pushes logo to the far left */
-        }
-
-       .logo-img {
-         display: block;
-         width: 80px;  /* Made smaller - adjust this number */
-         height: auto;
-         max-width: 100%;  /* Ensures it doesn't overflow on mobile */
-       }
-        
-
-          /* PSEUDO-ELEMENT: Creates custom checkmark bullet */
-        .feature-list li::before {
-            /* The checkmark character */
-            content: "✓";
-            /* Position absolutely relative to the li */
-            position: absolute;
-            /* Place it on the far left */
-            left: 0;
-            /* Make it bold */
-            font-weight: bold;
-            /* Make it bigger than the text */
-            font-size: 1.3rem;
-            ;
-        }
-
-        /* ========================================
-           FORM INPUT FIELDS
-           Text boxes, email, password inputs
-           ======================================== */
-        .form-input {
-            /* Take up full width of container */
-            width: 100%;
-            /* Space inside the input box */
-            padding: 10px;
-            /* Space below each input */
-            margin-bottom: 15px;
-            /* Black border, 2px thick */
-            border: 2px solid #000;
-            /* See-through background (shows grid pattern behind) */
-            background-color: transparent;
-            /* Use handwritten font */
-            font-family: 'Kalam', cursive;
-            /* Text size */
-            font-size: 1rem;
-        }
-        
-        /* FOCUS STATE: When user clicks into the input field */
-        .form-input:focus {
-            /* Remove default blue outline that browsers add */
-            outline: none;
-            /* Add shadow effect when focused */
-            box-shadow: 3px 3px 0px rgba(0, 0, 0, 0.2);
-        }
-
-          /* ========================================
-           CHECKBOX CONTAINER
-           Wrapper for checkbox and label
-           ======================================== */
-        .checkbox-container {
-            /* Use flexbox for layout */
-            display: flex;
-            /* Center items vertically */
-            align-items: center;
-            /* Space below the container */
-            margin-bottom: 15px;
-        }
-        
-        /* Checkbox input inside the container */
-        .checkbox-container input {
-            /* Space to the right of the checkbox */
-            margin-right: 10px;
-        }
-        
-        /* ========================================
-           FOOTER SECTION
-           Bottom of the page
-           ======================================== */
-        .footer {
-            /* Center all content */
-            text-align: center;
-            /* Space above the footer */
-            margin-top: 30px;
-        }
-        
-        /* Links in the footer */
-        .footer a {
-            /* Black text */
-            color: #000;
-            /* Underline the links */
-            text-decoration: underline;
-            /* Space around each link (top/bottom 0, left/right 10px) */
-            margin: 0 10px;
-        }
-
-
-
-       /* ========================================
-   TECH STACK SECTION IN FOOTER - COMPACT VERSION
-   Educational comments included for learning
-   ======================================== */
-
-/* Main container for the entire tech stack section */
-.tech-stack {
-    /* margin: top right bottom left */
-    /* Reduced top margin (20px) and bottom margin (15px) to make footer smaller */
-    margin: 20px 0 15px 0;
-    
-    /* Centers all content horizontally within this container */
-    text-align: center;
+  --sketch-border: 2px solid #000;
+  --sketch-shadow: 4px 4px 0 rgba(0, 0, 0, 0.2);
 }
 
-/* The "Made With" or "Built With" heading */
-.tech-title {
-    /* Font size - rem units scale based on root font size (usually 16px) */
-    /* 1.2rem = 1.2 × 16px = 19.2px */
-    font-size: 1.2rem;
-    
-    /* Makes the text bold/heavy */
-    font-weight: bold;
-    
-    /* Space below the title before the icons appear */
-    /* Reduced from 20px to 15px for more compact look */
-    margin-bottom: 15px;
+
+/* ===========================================================
+   GLOBAL BASE
+=========================================================== */
+
+* {
+  font-family: "Kalam", cursive;
+  color: #000;
+  box-sizing: border-box;
 }
 
-/* Container that holds all three technology icons (HTML, CSS, Bootstrap) */
-.tech-icons {
-    /* FLEXBOX - Modern layout method */
-    /* Arranges children (tech-item) in a flexible row/column */
-    display: flex;
-    
-    /* Centers items horizontally along the main axis */
-    justify-content: center;
-    
-    /* Centers items vertically along the cross axis */
-    align-items: center;
-    
-    /* Space between each tech icon */
-    /* Reduced from 40px to 25px for tighter spacing */
-    gap: 25px;
-    
-    /* Allows items to wrap to next line on small screens */
-    /* Without this, icons would squish together on mobile */
-    flex-wrap: wrap;
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Fredoka", sans-serif !important;
+  font-weight: 700;
+  margin: 0;
+  color: #000;
 }
 
-/* Each individual technology item (icon + label combo) */
-.tech-item {
-    /* FLEXBOX - Each item is also a flex container */
-    display: flex;
-    
-    /* Stack icon and label vertically (column direction) */
-    /* Default is 'row' (horizontal) */
-    flex-direction: column;
-    
-    /* Center the icon and label horizontally within this item */
-    align-items: center;
-    
-    /* Space between icon and label text */
-    /* Reduced from 10px to 5px for compact look */
-    gap: 5px;
+a {
+  color: var(--link-color);
+  text-decoration: none;
 }
 
-/* The actual icon images (HTML5, CSS3, Bootstrap logos) */
-.tech-item img {
-    /* FIXED SIZE - Makes all icons uniform */
-    /* Reduced from 80px to 50px for smaller appearance */
-    width: 50px;
-    height: 50px;
-    
-    /* Maintains image aspect ratio within the width/height constraints */
-    /* 'contain' = entire image fits inside, may have empty space */
-    /* Alternative: 'cover' would fill space but might crop image */
-    object-fit: contain;
-    
-    /* SMOOTH ANIMATION - Transition creates smooth effects */
-    /* When transform changes (on hover), animate over 0.3 seconds */
-    /* 'ease' = starts slow, speeds up, then slows down at end */
-    transition: transform 0.3s ease;
+a:hover {
+  text-decoration: underline;
 }
 
-/* Hover state - What happens when mouse is over an icon */
-.tech-item img:hover {
-    /* TRANSFORM - Changes element appearance without affecting layout */
-    /* scale(1.1) = makes image 10% larger (1.1 × original size) */
-    /* Creates a subtle "pop" effect when hovering */
-    transform: scale(1.1);
+
+/* ===========================================================
+   PAGE LAYOUT — FOOTER STAYS AT BOTTOM
+=========================================================== */
+
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
 }
 
-/* Label text that appears below each icon (e.g., "HTML5", "CSS3") */
-.tech-item span {
-    /* Font size in rem units */
-    /* 0.75rem = 0.75 × 16px = 12px (small text) */
-    font-size: 0.75rem;
-    
-    /* Makes the label text bold for better readability */
-    font-weight: bold;
+body.glass-morphism {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+
+  /* Default background (will be overridden in media queries too) */
+  background-image: url('../images/mobile-tablet.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+
+  padding: 15px;
+  position: relative;
 }
 
-/* The entire footer section container */
-.footer {
-    /* Centers all footer content horizontally */
-    text-align: center;
-    
-    /* Space above the footer (separates from main content) */
-    /* Reduced from 50px to 40px for more compact layout */
-    margin-top: 40px;
-    
-    /* Space at the bottom of footer (gives breathing room at page end) */
-    padding-bottom: 20px;
+.main-content {
+  flex: 1;
+  margin-bottom: 30px;
 }
 
-/* The row of footer links (Privacy, Terms, Support) */
-/* Targets any element with class 'd-flex' that's inside .footer */
-.footer .d-flex {
-    /* Space above the links row */
-    /* Reduced from Bootstrap's mt-3 (≈16px) to 15px */
-    margin-top: 15px;
-    
-    /* No space below links (flush with footer bottom) */
-    margin-bottom: 0;
+
+/* ===========================================================
+   GLASSMORPHISM LAYER (TOP OVERLAY)
+=========================================================== */
+
+body.glass-morphism::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+
+  border: 1px solid rgba(255,255,255,0.3);
+  box-shadow:
+    0 8px 30px rgba(0,0,0,0.20),
+    inset 0 1px rgba(255,255,255,0.4),
+    inset 0 -1px rgba(255,255,255,0.2);
+
+  z-index: -1;
+  pointer-events: none;
 }
 
-/* ========================================
-   MEDIA QUERY - MOBILE RESPONSIVE ADJUSTMENTS
-   Only applies when screen width is 767px or less (phones)
-   ======================================== */
+
+/* ===========================================================
+   HEADER + LOGO
+=========================================================== */
+
+.header {
+  margin-bottom: 20px;
+  padding: 10px 0;
+}
+
+.logo-img {
+  display: block;
+  height: auto;
+}
+
+/* Responsive logo sizes */
 @media (max-width: 767px) {
-    /* Reduce spacing between icons on small screens */
-    .tech-icons {
-        /* Even tighter spacing on mobile (25px → 20px) */
-        /* Prevents icons from wrapping too early */
-        gap: 20px;
-    }
-    
-    /* Make icons even smaller on mobile devices */
-    .tech-item img {
-        /* 50px → 40px for mobile screens */
-        /* Smaller icons = more screen real estate for content */
-        width: 40px;
-        height: 40px;
-    }
-    
-    /* Smaller "Made With" title on mobile */
-    .tech-title {
-        /* 1.2rem → 1rem (16px) */
-        font-size: 1rem;
-    }
-    
-    /* Smaller label text on mobile */
-    .tech-item span {
-        /* 0.75rem → 0.7rem (about 11px) */
-        font-size: 0.7rem;
-    }
-    
-    /* Less space above footer on mobile */
-    .footer {
-        /* 40px → 30px saves vertical space on small screens */
-        margin-top: 30px;
-    }
+  .logo-img { width: 60px; }
 }
 
-/* ========================================
-   WHY THESE SIZES?
-   
-   Desktop Icons: 50px
-   - Large enough to see details in logos
-   - Small enough to not dominate footer
-   - Standard size for footer tech badges
-   
-   Mobile Icons: 40px
-   - Maintains visibility on small screens
-   - Conserves vertical space (mobile users scroll more)
-   - Still touch-friendly (min 44px is iOS standard, we're close)
-   
-   Gap Spacing: 25px → 20px
-   - Prevents awkward wrapping on medium screens
-   - Keeps icons visually grouped as a unit
-   
-   Margins: Reduced throughout
-   - Footer was taking too much vertical space
-   - Modern design trend = compact footers
-   - Leaves more room for main content
-   ======================================== */
-         /* ========================================
-           TYPOGRAPHY CLASSES
-           ======================================== */
-        
-        /* Main title styling */
-        .title {
-            /* Large text */
-            font-size: 2rem;
-            /* Bold text */
-            font-weight: bold;
-            /* Space below */
-            margin-bottom: 15px;
-            /* Spacing between lines of text */
-            line-height: 1.2;
-        }
-        
-        /* Subtitle styling */
-        .subtitle {
-            /* Medium-large text */
-            font-size: 1.3rem;
-            /* Space below */
-            margin-bottom: 20px;
-        }
+@media (min-width: 768px) and (max-width: 1023px) {
+  .logo-img { width: 80px; }
+}
+
+@media (min-width: 1024px) and (max-width: 1439px) {
+  .logo-img { width: 95px; }
+}
+
+@media (min-width: 1440px) {
+  .logo-img { width: 110px; }
+}
 
 
-          /* ========================================
-           SKETCH FORM
-           The form container
-           ======================================== */
-        .sketch-form {
-            /* Space inside the form */
-            padding: 20px;
-            /* Take up full height of its container */
-            height: 100%;
-        }
+/* ===========================================================
+   TITLES / TEXT
+=========================================================== */
+
+.title {
+  font-size: 2.1rem;
+  margin-bottom: 15px;
+  line-height: 1.2;
+}
+
+.subtitle {
+  font-size: 1.3rem;
+  margin-bottom: 20px;
+}
+
+.cta-section {
+  margin-top: 10px;
+}
 
 
-        
-        /* ========================================
-           SKETCH LINE
-           Decorative horizontal line
-           ======================================== */
-        .sketch-line {
-            /* Line thickness */
-            height: 2px;
-            /* Black line */
-            background-color: #000;
-            /* Space above and below (15px top/bottom, 0 left/right) */
-            margin: 15px 0;
-            /* Required for ::before pseudo-element positioning */
-            position: relative;
-        }
-        
+/* ===========================================================
+   SKETCH BORDERS
+=========================================================== */
 
-          /* ========================================
-           SKETCH FORM
-           The form container
-           ======================================== */
-        .sketch-form {
-            /* Space inside the form */
-            padding: 20px;
-            /* Take up full height of its container */
-            height: 100%;
-        }
-        
-        /* ========================================
-           SKETCH LINE
-           Decorative horizontal line
-           ======================================== */
-        .sketch-line {
-            /* Line thickness */
-            height: 2px;
-            /* Black line */
-            background-color: #000;
-            /* Space above and below (15px top/bottom, 0 left/right) */
-            margin: 15px 0;
-            /* Required for ::before pseudo-element positioning */
-            position: relative;
-        }
+.sketch-border {
+  border: var(--sketch-border);
+  position: relative;
+  background: rgba(255,255,255,0.95);
+  box-shadow: var(--sketch-shadow);
+}
+
+.sketch-border::before {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  border: 2px solid #000;
+  opacity: 0.55;
+  transform: rotate(-1deg);
+  pointer-events: none;
+}
 
 
-          
+/* Optional decorative circle behind titles in forms */
+.hand-drawn-circle {
+  position: absolute;
+  top: -18px;
+  left: -18px;
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  border: 2px dashed #000;
+  opacity: 0.25;
+  z-index: -1;
+}
+
+
+/* ===========================================================
+   BUTTONS
+=========================================================== */
+
+.sketch-button {
+  background: #fff;
+  border: 2px solid #000;
+  padding: 8px 15px;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 3px 3px 0 rgba(0,0,0,0.2);
+  transition: all 0.2s ease;
+}
+
+.sketch-button:hover {
+  background: var(--accent-soft);
+  border-color: var(--accent);
+  transform: translateY(-2px);
+  box-shadow: 5px 5px 0 rgba(0,0,0,0.25);
+}
+
+.sketch-button:active {
+  transform: translateY(1px);
+  box-shadow: 2px 2px 0 rgba(0,0,0,0.25);
+}
+
+
+/* ===========================================================
+   FORM INPUTS
+=========================================================== */
+
+.sketch-form {
+  padding: 20px;
+  height: 100%;
+}
+
+.form-input {
+  width: 100%;
+  padding: 10px;
+  border: 2px solid #000;
+  background: rgba(255,255,255,0.85);
+  margin-bottom: 15px;
+  transition: all 0.25s ease;
+}
+
+.form-input:focus {
+  border-color: var(--accent);
+  background: #fff;
+  box-shadow: 3px 3px 0 rgba(0,0,0,0.2);
+}
+
+.checkbox-container {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 15px;
+}
+
+
+/* ===========================================================
+   FEATURE LIST (FADE-IN)
+=========================================================== */
+
+.feature-list {
+  list-style: none;
+  padding-left: 0;
+}
+
+.feature-list li {
+  position: relative;
+  margin-bottom: 14px;
+  padding-left: 30px;
+  font-size: 1.1rem;
+
+  opacity: 0;
+  transform: translateY(10px);
+  animation: fadeInUp 0.7s ease-out forwards;
+}
+
+.feature-list li:nth-child(2) { animation-delay: 0.12s; }
+feature-list li:nth-child(3) { animation-delay: 0.18s; }
+.feature-list li:nth-child(4) { animation-delay: 0.24s; }
+.feature-list li:nth-child(5) { animation-delay: 0.30s; }
+
+.feature-list li::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: var(--checkmark-color);
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+
+/* ===========================================================
+   SKETCH LINE
+=========================================================== */
+
+.sketch-line {
+  height: 2px;
+  background: var(--line-color);
+  margin: 15px 0;
+}
+
+
+/* ===========================================================
+   FOOTER
+=========================================================== */
+
+.footer {
+  text-align: center;
+  margin-top: 30px;
+  padding-bottom: 20px;
+}
+
+
+/* ===========================================================
+   TECH STACK ICONS
+=========================================================== */
+
+.tech-stack {
+  text-align: center;
+  margin: 20px 0 10px;
+}
+
+.tech-icons {
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+  flex-wrap: wrap;
+}
+
+.tech-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.tech-item img {
+  width: 50px;
+  height: 50px;
+  object-fit: contain;
+  transition: transform 0.3s ease;
+}
+
+.tech-item img:hover {
+  transform: scale(1.1);
+}
+
+.tech-item span {
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+
+/* ===========================================================
+   RESPONSIVE BACKGROUNDS + THEME SWITCH
+=========================================================== */
+
+/* ---- MOBILE (0–767px) ---- */
+@media (max-width: 767px) {
+  body.glass-morphism {
+    background-image: url('../images/mobile-tablets.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+}
+
+/* ---- TABLET (768–1023px) ---- */
+@media (min-width: 768px) and (max-width: 1023px) {
+  body.glass-morphism {
+    background-image: url('../images/mobile-tablets.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+}
+
+/* ---- LAPTOP (1024–1439px) ---- */
+@media (min-width: 1024px) and (max-width: 1439px) {
+  body.glass-morphism {
+    background-image: url('../images/desktop-and-laptop.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+
+  :root {
+    --accent: #000;
+    --accent-soft: rgba(0,0,0,0.1);
+    --line-color: #000;
+    --checkmark-color: #000;
+    --link-color: #000;
+  }
+}
+
+/* ---- DESKTOP (1440px+) ---- */
+@media (min-width: 1440px) {
+  body.glass-morphism {
+    background-image: url('../images/desktop-and-laptop.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+
+  :root {
+    --accent: #000;
+    --accent-soft: rgba(0,0,0,0.1);
+    --line-color: #000;
+    --checkmark-color: #000;
+    --link-color: #000;
+  }
+}
+
+
+/* ===========================================================
+   END OF FILE — ATTRIBUTION
+=========================================================== */
+/*
+This stylesheet was rebuilt by Sadik using:
+- ChatGPT (OpenAI): theme system, layout refactor, animations
+- Claude (Anthropic): early wireframe guidance
+- GitHub Copilot: autocomplete & minor suggestion support
+Rebuilt from an older SaaS UI for class, education & portfolio.
+*/
