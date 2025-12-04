@@ -1,26 +1,35 @@
-/* 
+/*  
 ===========================================================
- QUICKPLATE MASTER STYLESHEET (CLEAN VERSION)
- Includes:
- - Mobile + Tablet: Colored doodle background image
- - Laptop + Desktop: Sketch paper background image
+ QUICKPLATE MASTER STYLESHEET  
+ Written clean, simple, and future-proof so I understand
+ every detail when I come back to this project later.
+
+ This file controls:
+ - All typography (Fredoka + Kalam)
+ - Responsive backgrounds for devices
  - Glassmorphism overlay
- - Sketch borders
- - Responsive logo sizes
- - Fredoka headers + Kalam body
- - Fade-in feature list
+ - Custom sketch borders
+ - Fade-in animations
+ - Full responsive logo system
 ===========================================================
 */
 
-/* ===== IMPORT FONTS ===== */
+
+/* -----------------------------------------------------------
+   IMPORTED FONTS
+   Fredoka → For strong, clean headings
+   Kalam   → For the handwritten aesthetic everywhere else
+----------------------------------------------------------- */
 
 @import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Kalam:wght@300;400;700&display=swap');
 
 
-/* ===========================================================
-   ROOT VARIABLES (DEFAULT = MOBILE/TABLET ORANGE THEME)
-=========================================================== */
+/* -----------------------------------------------------------
+   ROOT VARIABLES (DEFAULT = Mobile/Tablet theme)
+   - Orange accent colours for doodle backgrounds
+   - These values change on laptop/desktop via media queries
+----------------------------------------------------------- */
 
 :root {
   --accent: #FF7A00;
@@ -34,21 +43,21 @@
 }
 
 
-/* ===========================================================
-   GLOBAL BASE
-=========================================================== */
+
+/* -----------------------------------------------------------
+   BASIC GLOBAL STYLE RESET
+----------------------------------------------------------- */
 
 * {
   font-family: "Kalam", cursive;
   color: #000;
-  box-sizing: border-box;
+  box-sizing: border-box;  /* Prevents layout issues */
 }
 
 h1, h2, h3, h4, h5, h6 {
   font-family: "Fredoka", sans-serif !important;
   font-weight: 700;
   margin: 0;
-  color: #000;
 }
 
 a {
@@ -61,9 +70,12 @@ a:hover {
 }
 
 
-/* ===========================================================
-   PAGE LAYOUT — FOOTER STAYS AT BOTTOM
-=========================================================== */
+
+/* -----------------------------------------------------------
+   PAGE STRUCTURE
+   - Forces footer to the bottom
+   - Makes glassmorphism cover entire page
+----------------------------------------------------------- */
 
 html, body {
   height: 100%;
@@ -71,13 +83,18 @@ html, body {
   padding: 0;
 }
 
+/*  
+   The glass-morphism container:
+   - Uses background image based on device size
+   - Uses ::before for the blur overlay
+   - Uses z-index -1 to ensure content is above the glass
+*/
 body.glass-morphism {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
 
-  /* Default background (will be overridden in media queries too) */
-  background-image: url('../images/mobile-tablets.png');
+  background-image: url('../images/mobile-tablets.png'); /* Default (mobile/tablet) */
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -88,24 +105,33 @@ body.glass-morphism {
 }
 
 .main-content {
-  flex: 1;
-  margin-bottom: 30px;
+  flex: 1; /* Push footer to bottom */
 }
 
 
-/* ===========================================================
-   GLASSMORPHISM LAYER (TOP OVERLAY)
-=========================================================== */
+
+/* -----------------------------------------------------------
+   GLASSMORPHISM EXPLAINED (MY OWN WORDS)
+   I use ::before to create a separate layer behind everything.
+   Why?
+   - It gives depth without blurring the text
+   - backdrop-filter blur works only on the ::before layer
+   Z-index trick:
+   - ::before is -1 → sits behind page content
+   - Background image is still underneath ::before
+----------------------------------------------------------- */
 
 body.glass-morphism::before {
   content: "";
   position: fixed;
   inset: 0;
 
+  /* Transparent white layer + blur */
   background: rgba(255, 255, 255, 0.12);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
 
+  /* Soft lighting / glass reflection */
   border: 1px solid rgba(255,255,255,0.3);
   box-shadow:
     0 8px 30px rgba(0,0,0,0.20),
@@ -117,9 +143,10 @@ body.glass-morphism::before {
 }
 
 
-/* ===========================================================
-   HEADER + LOGO
-=========================================================== */
+
+/* -----------------------------------------------------------
+   HEADER + RESPONSIVE LOGO
+----------------------------------------------------------- */
 
 .header {
   margin-bottom: 20px;
@@ -131,27 +158,28 @@ body.glass-morphism::before {
   height: auto;
 }
 
-/* Responsive logo sizes */
+/* Logo size per device */
 @media (max-width: 767px) {
-  .logo-img { width: 60px; }
+  .logo-img { width: 85px; }
 }
 
 @media (min-width: 768px) and (max-width: 1023px) {
-  .logo-img { width: 80px; }
-}
-
-@media (min-width: 1024px) and (max-width: 1439px) {
-  .logo-img { width: 95px; }
-}
-
-@media (min-width: 1440px) {
   .logo-img { width: 110px; }
 }
 
+@media (min-width: 1024px) and (max-width: 1439px) {
+  .logo-img { width: 135px; }
+}
 
-/* ===========================================================
-   TITLES / TEXT
-=========================================================== */
+@media (min-width: 1440px) {
+  .logo-img { width: 160px; }
+}
+
+
+
+/* -----------------------------------------------------------
+   PAGE TITLES / CONTENT HEADINGS
+----------------------------------------------------------- */
 
 .title {
   font-size: 2.1rem;
@@ -169,9 +197,16 @@ body.glass-morphism::before {
 }
 
 
-/* ===========================================================
-   SKETCH BORDERS
-=========================================================== */
+
+/* -----------------------------------------------------------
+   SKETCH BORDER SYSTEM (MY OWN HAND-DRAWN EFFECT)
+   This is the signature look of the Quickplate UI.
+
+   How it works:
+   - The main border uses a solid black line
+   - ::before draws a second rotated border to look hand-drawn
+   - Slight opacity and rotation create the "sketch" illusion
+----------------------------------------------------------- */
 
 .sketch-border {
   border: var(--sketch-border);
@@ -180,6 +215,7 @@ body.glass-morphism::before {
   box-shadow: var(--sketch-shadow);
 }
 
+/* The second sloppy border */
 .sketch-border::before {
   content: "";
   position: absolute;
@@ -190,8 +226,7 @@ body.glass-morphism::before {
   pointer-events: none;
 }
 
-
-/* Optional decorative circle behind titles in forms */
+/* Extra decorative circle sometimes used behind form headings */
 .hand-drawn-circle {
   position: absolute;
   top: -18px;
@@ -205,9 +240,10 @@ body.glass-morphism::before {
 }
 
 
-/* ===========================================================
-   BUTTONS
-=========================================================== */
+
+/* -----------------------------------------------------------
+   BUTTONS (Sketch Style)
+----------------------------------------------------------- */
 
 .sketch-button {
   background: #fff;
@@ -232,9 +268,10 @@ body.glass-morphism::before {
 }
 
 
-/* ===========================================================
-   FORM INPUTS
-=========================================================== */
+
+/* -----------------------------------------------------------
+   FORM ELEMENTS
+----------------------------------------------------------- */
 
 .sketch-form {
   padding: 20px;
@@ -264,9 +301,10 @@ body.glass-morphism::before {
 }
 
 
-/* ===========================================================
-   FEATURE LIST (FADE-IN)
-=========================================================== */
+
+/* -----------------------------------------------------------
+   FEATURE LIST ANIMATION
+----------------------------------------------------------- */
 
 .feature-list {
   list-style: none;
@@ -284,11 +322,13 @@ body.glass-morphism::before {
   animation: fadeInUp 0.7s ease-out forwards;
 }
 
+/* Staggered animation delay for each list item */
 .feature-list li:nth-child(2) { animation-delay: 0.12s; }
-feature-list li:nth-child(3) { animation-delay: 0.18s; }
+.feature-list li:nth-child(3) { animation-delay: 0.18s; }
 .feature-list li:nth-child(4) { animation-delay: 0.24s; }
 .feature-list li:nth-child(5) { animation-delay: 0.30s; }
 
+/* Custom checkmark */
 .feature-list li::before {
   content: "✓";
   position: absolute;
@@ -304,9 +344,10 @@ feature-list li:nth-child(3) { animation-delay: 0.18s; }
 }
 
 
-/* ===========================================================
-   SKETCH LINE
-=========================================================== */
+
+/* -----------------------------------------------------------
+   DIVIDER "SKETCH LINE"
+----------------------------------------------------------- */
 
 .sketch-line {
   height: 2px;
@@ -315,9 +356,10 @@ feature-list li:nth-child(3) { animation-delay: 0.18s; }
 }
 
 
-/* ===========================================================
+
+/* -----------------------------------------------------------
    FOOTER
-=========================================================== */
+----------------------------------------------------------- */
 
 .footer {
   text-align: center;
@@ -326,9 +368,10 @@ feature-list li:nth-child(3) { animation-delay: 0.18s; }
 }
 
 
-/* ===========================================================
+
+/* -----------------------------------------------------------
    TECH STACK ICONS
-=========================================================== */
+----------------------------------------------------------- */
 
 .tech-stack {
   text-align: center;
@@ -340,13 +383,6 @@ feature-list li:nth-child(3) { animation-delay: 0.18s; }
   justify-content: center;
   gap: 25px;
   flex-wrap: wrap;
-}
-
-.tech-item {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 4px;
 }
 
 .tech-item img {
@@ -366,39 +402,36 @@ feature-list li:nth-child(3) { animation-delay: 0.18s; }
 }
 
 
-/* ===========================================================
-   RESPONSIVE BACKGROUNDS + THEME SWITCH
-=========================================================== */
 
-/* ---- MOBILE (0–767px) ---- */
+/* -----------------------------------------------------------
+   RESPONSIVE BACKGROUNDS
+   IMPORTANT:
+   CSS file lives in assets/css/
+   Images live in assets/images/
+   Therefore the correct path is ../images/
+----------------------------------------------------------- */
+
+/* ---- Mobile ---- */
 @media (max-width: 767px) {
   body.glass-morphism {
-    background-image: url('./assets/images/mobile-tablets.png');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
+    background-image: url('../images/mobile-tablets.png');
   }
 }
 
-/* ---- TABLET (768–1023px) ---- */
+/* ---- Tablet ---- */
 @media (min-width: 768px) and (max-width: 1023px) {
   body.glass-morphism {
-    background-image: url('./assets/images/mobile-tablets.png');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
+    background-image: url('../images/mobile-tablets.png');
   }
 }
 
-/* ---- LAPTOP (1024–1439px) ---- */
+/* ---- Laptop ---- */
 @media (min-width: 1024px) and (max-width: 1439px) {
   body.glass-morphism {
-    background-image: url('./assets/images/desktop-and-laptop.png');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
+    background-image: url('../images/desktop-and-laptop.png');
   }
 
+  /* Switch to black theme */
   :root {
     --accent: #000;
     --accent-soft: rgba(0,0,0,0.1);
@@ -408,13 +441,10 @@ feature-list li:nth-child(3) { animation-delay: 0.18s; }
   }
 }
 
-/* ---- DESKTOP (1440px+) ---- */
+/* ---- Desktop ---- */
 @media (min-width: 1440px) {
   body.glass-morphism {
-    background-image: url('assets/images/desktop-and-laptop.png');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
+    background-image: url('../images/desktop-and-laptop.png');
   }
 
   :root {
@@ -427,13 +457,14 @@ feature-list li:nth-child(3) { animation-delay: 0.18s; }
 }
 
 
-/* ===========================================================
-   END OF FILE — ATTRIBUTION
-=========================================================== */
+
+/* -----------------------------------------------------------
+   END OF FILE — PERSONAL ATTRIBUTION
+----------------------------------------------------------- */
 /*
-This stylesheet was rebuilt by Sadik using:
-- ChatGPT (OpenAI): theme system, layout refactor, animations
-- Claude (Anthropic): early wireframe guidance
-- GitHub Copilot: autocomplete & minor suggestion support
-Rebuilt from an older SaaS UI for class, education & portfolio.
+This stylesheet was rebuilt by Sadik (me):
+- I used ChatGPT for logic, structure, and explanations
+- Claude helped me sketch early layout ideas
+- Copilot assisted with autocomplete
+This is a rebuild of my older SaaS UI for my class + portfolio.
 */
