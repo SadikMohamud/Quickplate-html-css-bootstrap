@@ -1,6 +1,14 @@
 /* 
 ===========================================================
- QUICKPLATE MASTER STYLESHEET (CLEAN + LOGO UPDATE)
+ QUICKPLATE MASTER STYLESHEET (CLEAN VERSION)
+ Includes:
+ - Mobile + Tablet: Colored doodle background image
+ - Laptop + Desktop: Sketch paper background image
+ - Glassmorphism overlay
+ - Sketch borders
+ - Responsive logo sizes
+ - Fredoka headers + Kalam body
+ - Fade-in feature list
 ===========================================================
 */
 
@@ -68,6 +76,7 @@ body.glass-morphism {
   flex-direction: column;
   min-height: 100vh;
 
+  /* Default background (will be overridden in media queries too) */
   background-image: url('../images/mobile-tablet.png');
   background-size: cover;
   background-position: center;
@@ -85,7 +94,7 @@ body.glass-morphism {
 
 
 /* ===========================================================
-   GLASSMORPHISM OVERLAY
+   GLASSMORPHISM LAYER (TOP OVERLAY)
 =========================================================== */
 
 body.glass-morphism::before {
@@ -109,7 +118,7 @@ body.glass-morphism::before {
 
 
 /* ===========================================================
-   HEADER + LOGO (BIGGER VERSION)
+   HEADER + LOGO
 =========================================================== */
 
 .header {
@@ -122,26 +131,26 @@ body.glass-morphism::before {
   height: auto;
 }
 
-/* Bigger responsive logo sizes */
+/* Responsive logo sizes */
 @media (max-width: 767px) {
-  .logo-img { width: 85px; }
+  .logo-img { width: 60px; }
 }
 
 @media (min-width: 768px) and (max-width: 1023px) {
-  .logo-img { width: 110px; }
+  .logo-img { width: 80px; }
 }
 
 @media (min-width: 1024px) and (max-width: 1439px) {
-  .logo-img { width: 135px; }
+  .logo-img { width: 95px; }
 }
 
 @media (min-width: 1440px) {
-  .logo-img { width: 160px; }
+  .logo-img { width: 110px; }
 }
 
 
 /* ===========================================================
-   TITLES
+   TITLES / TEXT
 =========================================================== */
 
 .title {
@@ -181,6 +190,8 @@ body.glass-morphism::before {
   pointer-events: none;
 }
 
+
+/* Optional decorative circle behind titles in forms */
 .hand-drawn-circle {
   position: absolute;
   top: -18px;
@@ -254,7 +265,7 @@ body.glass-morphism::before {
 
 
 /* ===========================================================
-   FEATURE LIST ANIMATION
+   FEATURE LIST (FADE-IN)
 =========================================================== */
 
 .feature-list {
@@ -274,7 +285,7 @@ body.glass-morphism::before {
 }
 
 .feature-list li:nth-child(2) { animation-delay: 0.12s; }
-.feature-list li:nth-child(3) { animation-delay: 0.18s; }
+feature-list li:nth-child(3) { animation-delay: 0.18s; }
 .feature-list li:nth-child(4) { animation-delay: 0.24s; }
 .feature-list li:nth-child(5) { animation-delay: 0.30s; }
 
@@ -331,6 +342,13 @@ body.glass-morphism::before {
   flex-wrap: wrap;
 }
 
+.tech-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
 .tech-item img {
   width: 50px;
   height: 50px;
@@ -349,27 +367,36 @@ body.glass-morphism::before {
 
 
 /* ===========================================================
-   RESPONSIVE BACKGROUNDS
+   RESPONSIVE BACKGROUNDS + THEME SWITCH
 =========================================================== */
 
-/* ---- MOBILE ---- */
+/* ---- MOBILE (0–767px) ---- */
 @media (max-width: 767px) {
   body.glass-morphism {
-    background-image: url('../images/mobile-tabletS.png');
+    background-image: url('../images/mobile-tablets.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
   }
 }
 
-/* ---- TABLET ---- */
+/* ---- TABLET (768–1023px) ---- */
 @media (min-width: 768px) and (max-width: 1023px) {
   body.glass-morphism {
-    background-image: url('../images/mobile-tabletS.png');
+    background-image: url('../images/mobile-tablets.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
   }
 }
 
-/* ---- LAPTOP ---- */
+/* ---- LAPTOP (1024–1439px) ---- */
 @media (min-width: 1024px) and (max-width: 1439px) {
   body.glass-morphism {
     background-image: url('../images/desktop-and-laptop.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
   }
 
   :root {
@@ -381,10 +408,13 @@ body.glass-morphism::before {
   }
 }
 
-/* ---- DESKTOP ---- */
+/* ---- DESKTOP (1440px+) ---- */
 @media (min-width: 1440px) {
   body.glass-morphism {
     background-image: url('../images/desktop-and-laptop.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
   }
 
   :root {
@@ -400,3 +430,10 @@ body.glass-morphism::before {
 /* ===========================================================
    END OF FILE — ATTRIBUTION
 =========================================================== */
+/*
+This stylesheet was rebuilt by Sadik using:
+- ChatGPT (OpenAI): theme system, layout refactor, animations
+- Claude (Anthropic): early wireframe guidance
+- GitHub Copilot: autocomplete & minor suggestion support
+Rebuilt from an older SaaS UI for class, education & portfolio.
+*/
