@@ -1,118 +1,217 @@
-# Quickplate
-https://sadikmohamud.github.io/Quickplate-html-css-bootstrap/index.html
+📸 Project Preview
 
-A QR menu service landing page with a hand-drawn aesthetic. This project recreates a prototype I built previously, now using Bootstrap for the first time.
+Add image here
+assets/images/Screenshots/preview.png
 
-![Homepage Screenshot](assets/Screenshots/laptop.png)
 
-## About This Project
+📖 About The Project
 
-This is a learning project for Code Institute where I explored Bootstrap framework. The design features a sketch-style interface that makes it feel handcrafted and approachable for restaurant owners.
+Quickplate is a concept landing page for a QR-menu SaaS.
+This build focuses on:
 
-## What I Built
+A mobile-first workflow
+Sketch-style UI using CSS pseudo-elements
+A responsive layout using both Bootstrap and custom CSS
+Glassmorphism overlays
+Background images that change per device size
+Clean CSS variables + design system setup
 
-- Responsive landing page with sign-up form
-- Documentation page with service information
-- Hand-drawn design using CSS pseudo-elements
-- Mobile-friendly layout with Bootstrap grid
 
-### Sign-Up Form
-![Sign Up Form](assets/Screenshots/sign_up_form.png)
+This project allowed me to refine responsive design and deepen my understanding of CSS effects that look hand-drawn but remain fully scalable.
 
-The form features a custom sketch border effect created with CSS pseudo-elements.
 
-### Mobile Responsive
-![Mobile View](assets/Screenshots/mobile_first_design.jpg)
+📱 Mobile-First Design
 
-Fully responsive design that adapts to all screen sizes.
+Quickplate was designed starting from mobile.
+Every layout decision begins with phones, then scales up to tablets, laptops and desktops.
 
-![Mobile Responsiveness](assets/Screenshots/mobile_responsiveness.png)
+This approach gives the UI:
 
-## Technologies Used
+✓ cleaner spacing
+✓ better readability
+✓ predictable breakpoints
+✓ faster loading
+✓ consistency across all screen sizes
 
-![Tech Stack](assets/Screenshots/CSS_fonts_import.png)
+Mobile Layout Screenshot
 
-- **HTML5** - Page structure
-- **CSS3** - Custom styling and effects
-- **Bootstrap 5** - Responsive grid system (first time using it!)
-- **Google Fonts** - Kalam handwritten font
+Add image here
+assets/images/Screenshots/mobile-first.png
 
-## Design Details
 
-### Custom Border Effect
-![Sketch Border Detail](assets/Screenshots/pseudo_elements_double_sketch_border.png)
+🧩 Responsive Layout (Scaling Up)
 
-The signature hand-drawn border uses CSS `::before` pseudo-elements with rotation to create an imperfect, sketchy look.
+After building the mobile version, I progressively enhanced for larger screens.
 
-## Key Features
 
-✓ Sketch-style borders using CSS `::before` pseudo-elements  
-✓ Custom CSS variables for consistent design  
-✓ Responsive layout that works on all devices  
-✓ Interactive button hover effects  
-✓ Clean, semantic HTML5 structure  
+📱 Tablet View (768–1023px)
 
-## What I Learned
+•Increased white-space
+•Larger logo
+•More balanced layout
 
-This project helped me understand:
-- Bootstrap's grid system and utility classes
-- CSS pseudo-elements for creating visual effects
-- Building responsive layouts without writing media queries from scratch
-- Organizing CSS with custom properties
-- Creating consistent design systems with CSS variables
 
-## Installation
+Add image here
+assets/images/Screenshots/tablet-view.png
 
-```bash
-# Clone the repository
-git clone https://github.com/SadikMohamud/Quickplate-html-css-bootstrap.git
 
-# Navigate to project directory
-cd Quickplate-html-css-bootstrap
+💻 Laptop View (1024–1439px)
 
-# Open in browser
-open index.htmlProject Structure
+•Switches to the sketch-style black & white background
+•Headings scale up
+•Wider grid layout
+
+Add image here
+assets/images/Screenshots/laptop-view.png
+
+
+🖥 Desktop View (1440px+)
+
+•Full-width layout
+•Maximum spacing
+•Cleanest presentation
+
+
+Add image here
+assets/images/Screenshots/desktop-view.png
+
+
+🎨 Design Details
+
+✏️ Custom Sketch Border Effect
+
+One of the signatures of this UI is the hand-drawn border used on the form container.
+This is created with a CSS ::before pseudo-element placed slightly offset, rotated, and lowered in opacity to imitate a real pencil sketch.
+
+Screenshot
+
+Add image here
+assets/images/Screenshots/sketch-border-closeup.png
+
+
+🌫 Glassmorphism Layer
+
+The page uses a glass-like overlay to soften backgrounds:
+
+Blur filters
+
+Transparent white wash
+
+Inset highlights
+
+Stacked z-index layers
+
+
+This allows bright gradient or doodle backgrounds without affecting readability.
+
+Screenshot
+
+Add image here
+assets/images/Screenshots/glass-layer.png
+
+
+⚙️ Key Features
+
+✓ Mobile-first responsive layout
+✓ Dynamic background images based on screen width
+✓ Sketch-style border effect using CSS ::before
+✓ CSS variables for colour and spacing consistency
+✓ Bootstrap grid system for structure
+✓ Fade-in animation for feature list
+✓ Clean form design with subtle interaction states
+✓ Fully semantic HTML
+
+
+🛠 Built With
+
+HTML5 — structure
+
+CSS3 — custom sketch UI, animations, glassmorphism
+
+Bootstrap 5 — grid + responsive utilities
+
+Google Fonts — “Kalam” + “Fredoka”
+
+Devicon — tech stack icons
+
+
+📁 Project Structure
+
 Quickplate-html-css-bootstrap/
 │
-├── index.html              # Main landing page
-├── docs.html               # Documentation page
-├── README.md               # This file
+├── index.html
+├── docs.html
+├── README.md
 │
 └── assets/
     ├── css/
-    │   └── styles.css      # Custom styles
+    │   └── styles.css
     │
     └── images/
-        ├── Logo.png        # Site logo
-        └── Screenshots/    # README screenshots
-            ├── laptop.png
-            ├── sign_up_form.png
-            ├── mobile_first_design.jpg
-            ├── mobile_responsiveness.png
-            ├── CSS_fonts_import.png
-            └── pseudo_elements_double_sketch_border.png
+        ├── Logo.png
+        └── Screenshots/
+            ├── preview.png
+            ├── mobile-first.png
+            ├── tablet-view.png
+            ├── laptop-view.png
+            ├── desktop-view.png
+            ├── sketch-border-closeup.png
+            ├── glass-layer.png
 
 
-Live Demo
-🔗 View Live Site
-Browser Support
-✅ Chrome (latest)
-✅ Firefox (latest)
-✅ Safari (latest)
-✅ Edge (latest)
-✅ Mobile browsers
-Credits
-Bootstrap - Framework
-Google Fonts - Kalam typeface
-Devicon - Tech stack icons in footer
-AI Assistance & Tools Used
-This project was developed with assistance from AI tools:
-DeepSeek - Primary AI assistant for code development and problem-solving
-GitHub Copilot - Code suggestions and autocompletion in VS Code
-ChatGPT - Additional guidance and troubleshooting support
-Special thanks to these tools for helping me learn Bootstrap and CSS techniques throughout this project.
-Author
+⚙️ Installation
+
+# Clone repository
+git clone https://github.com/SadikMohamud/Quickplate-html-css-bootstrap.git
+
+# Navigate into project
+cd Quickplate-html-css-bootstrap
+
+# Open in browser
+open index.html
+
+
+🚀 Deployment
+
+Already deployed using GitHub Pages
+and connected to a custom Namecheap domain.
+
+
+🔮 Future Improvements
+
+Add full SaaS onboarding
+
+Add dark mode
+
+Add animated SVG doodles
+
+Convert to React + Tailwind version
+
+Add multi-page dashboard mockups
+
+
+🤖 AI Tools Used
+
+This project was enhanced using:
+
+DeepSeek — primary assistant for code planning & structuring
+
+GitHub Copilot — inline code suggestions
+
+ChatGPT — layout refactoring, responsive design help, documentation
+
+Claude — early wireframe guidance
+
+
+All tools used for learning and speeding up workflow.
+
+
+---
+
+👤 Author
+
 Sadik Mohamud
 Code Institute Student
 GitHub: @SadikMohamud
-Built with ❤️ as a learning project for Code Institute
+
+Built with ❤️ as a learning project to deepen my understanding of responsive design, CSS effects, and visual design systems.
