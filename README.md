@@ -1,9 +1,3 @@
-📸 Project Preview
-
-Add image here
-assets/images/Screenshots/preview.png
-
-
 📖 About The Project
 
 Quickplate is a concept landing page for a QR-menu SaaS.
@@ -36,7 +30,7 @@ This approach gives the UI:
 Mobile Layout Screenshot
 
 Add image here
-assets/images/Screenshots/mobile-first.png
+./assets/images/Screenshots/mobile-first.png
 
 
 🧩 Responsive Layout (Scaling Up)
@@ -52,7 +46,7 @@ After building the mobile version, I progressively enhanced for larger screens.
 
 
 Add image here
-assets/images/Screenshots/tablet-view.png
+./assets/images/Screenshots/tablet-view.png
 
 
 💻 Laptop View (1024–1439px)
@@ -86,7 +80,7 @@ This is created with a CSS ::before pseudo-element placed slightly offset, rotat
 Screenshot
 
 Add image here
-assets/images/Screenshots/sketch-border-closeup.png
+./assets/images/Screenshots/sketch-border-closeup.png
 
 
 🌫 Glassmorphism Layer
@@ -103,11 +97,6 @@ Stacked z-index layers
 
 
 This allows bright gradient or doodle backgrounds without affecting readability.
-
-Screenshot
-
-Add image here
-assets/images/Screenshots/glass-layer.png
 
 
 ⚙️ Key Features
