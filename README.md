@@ -187,6 +187,18 @@ ChatGPT — layout refactoring, responsive design help, documentation
 
 Claude — early wireframe guidance
 
+-----wireframes-----
+Desktop & Laptop
+![Laptop & Desktop-wireframe](assets/Screenshots/laptop-desktop-wireframe.png)
+
+Mobile-wireframe
+![Mobile-wireframe](assets/Screenshots/mobile-wireframe.png)
+
+tablet wireframe
+
+![tablet-wireframe](assets/Screenshots/tablet-wireframe.png)
+
+
 
 All tools used for learning and speeding up workflow.
 
