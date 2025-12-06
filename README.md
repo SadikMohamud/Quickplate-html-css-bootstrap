@@ -29,7 +29,7 @@ This approach gives the UI:
 
 Mobile Layout Screenshot
 
-![mobile-view](assets/Screenshots/tablet-view.png)
+![mobile-view](assets/Screenshots/mobile-view.png)
 
 
 🧩 Responsive Layout (Scaling Up)
