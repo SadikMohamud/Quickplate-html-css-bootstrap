@@ -30,7 +30,7 @@ This approach gives the UI:
 Mobile Layout Screenshot
 
 Add image here
-(assets/images/Screenshots/mobile-first.png)
+(assets/Screenshots/mobile-first.png)
 
 
 🧩 Responsive Layout (Scaling Up)
