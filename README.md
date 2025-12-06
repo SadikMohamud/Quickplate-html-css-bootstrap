@@ -189,7 +189,7 @@ Claude — early wireframe guidance
 
 -----wireframes-----
 Desktop & Laptop
-![Laptop & Desktop-wireframe](assets/Screenshots/laptop-desktop-wireframe.png)
+![Laptop & Desktop-wireframe](assets/Screenshots/laptop-desktop-wirefame.png)
 
 Mobile-wireframe
 ![Mobile-wireframe](assets/Screenshots/mobile-wireframe.png)
