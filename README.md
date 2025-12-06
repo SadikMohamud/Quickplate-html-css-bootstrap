@@ -30,7 +30,7 @@ This approach gives the UI:
 Mobile Layout Screenshot
 
 Add image here
-./assets/images/Screenshots/mobile-first.png
+../images/Screenshots/mobile-first.png
 
 
 🧩 Responsive Layout (Scaling Up)
@@ -46,7 +46,7 @@ After building the mobile version, I progressively enhanced for larger screens.
 
 
 Add image here
-./assets/images/Screenshots/tablet-view.png
+../images/Screenshots/tablet-view.png
 
 
 💻 Laptop View (1024–1439px)
@@ -56,7 +56,7 @@ Add image here
 •Wider grid layout
 
 Add image here
-assets/images/Screenshots/laptop-view.png
+../images/Screenshots/laptop-view.png
 
 
 🖥 Desktop View (1440px+)
@@ -67,7 +67,7 @@ assets/images/Screenshots/laptop-view.png
 
 
 Add image here
-assets/images/Screenshots/desktop-view.png
+../images/Screenshots/desktop-view.png
 
 
 🎨 Design Details
@@ -80,7 +80,7 @@ This is created with a CSS ::before pseudo-element placed slightly offset, rotat
 Screenshot
 
 Add image here
-./assets/images/Screenshots/sketch-border-closeup.png
+../images/Screenshots/sketch-border-closeup.png
 
 
 🌫 Glassmorphism Layer
