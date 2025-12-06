@@ -45,8 +45,8 @@ After building the mobile version, I progressively enhanced for larger screens.
 •More balanced layout
 
 
-Add image here
-(assets/images/Screenshots/tablet-view.png)
+
+![tablet-view](assets/images/Screenshots/tablet-view.png)
 
 
 💻 Laptop View (1024–1439px)
