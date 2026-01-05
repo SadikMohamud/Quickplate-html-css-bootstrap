@@ -19,6 +19,9 @@
    IMPORTED FONTS
    Fredoka → For strong, clean headings
    Kalam   → For the handwritten aesthetic everywhere else
+   
+   Both fonts are loaded from Google Fonts CDN
+   display=swap ensures text is visible while fonts load
 ----------------------------------------------------------- */
 
 @import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&display=swap');
@@ -29,42 +32,53 @@
    ROOT VARIABLES (DEFAULT = Mobile/Tablet theme)
    - Orange accent colours for doodle backgrounds
    - These values change on laptop/desktop via media queries
+   
+   CSS custom properties (variables) allow us to change
+   colors throughout the entire site by modifying one value
+   var(--accent) is used throughout the CSS to reference these
 ----------------------------------------------------------- */
 
 :root {
-  --accent: #FF7A00;
-  --accent-soft: rgba(255, 122, 0, 0.15);
-  --line-color: #FF7A00;
-  --checkmark-color: #FF7A00;
-  --link-color: #FF7A00;
+  --accent: #FF7A00;                          /* Main orange color used for highlights */
+  --accent-soft: rgba(255, 122, 0, 0.15);     /* Transparent version for backgrounds */
+  --line-color: #FF7A00;                      /* Color of divider lines */
+  --checkmark-color: #FF7A00;                 /* Color of checkmarks in lists */
+  --link-color: #FF7A00;                      /* Color of links */
 
-  --sketch-border: 2px solid #000;
-  --sketch-shadow: 4px 4px 0 rgba(0, 0, 0, 0.2);
+  --sketch-border: 2px solid #000;            /* Standard black border thickness */
+  --sketch-shadow: 4px 4px 0 rgba(0, 0, 0, 0.2); /* Shadow for sketch effect */
 }
 
 
 
 /* -----------------------------------------------------------
    BASIC GLOBAL STYLE RESET
+   
+   * selector targets every element on the page
+   This ensures consistent styling across all browsers
 ----------------------------------------------------------- */
 
 * {
-  font-family: "Kalam", cursive;
-  color: #000;
-  box-sizing: border-box;  /* Prevents layout issues */
+  font-family: "Kalam", cursive;              /* Default handwritten font for all text */
+  color: #000;                                /* All text is black by default */
+  box-sizing: border-box;                     /* Prevents padding/border from increasing element width */
 }
 
+/* All heading tags use the Fredoka font instead of Kalam
+   !important forces this rule to override any other font settings */
 h1, h2, h3, h4, h5, h6 {
-  font-family: "Fredoka", sans-serif !important;
-  font-weight: 700;
-  margin: 0;
+  font-family: "Fredoka", sans-serif !important; /* Bold, clean font for headings */
+  font-weight: 700;                           /* Makes headings extra bold */
+  margin: 0;                                  /* Removes default browser spacing */
 }
 
+/* Link styling - uses the variable defined in :root */
 a {
-  color: var(--link-color);
-  text-decoration: none;
+  color: var(--link-color);                   /* Orange on mobile/tablet, black on laptop/desktop */
+  text-decoration: none;                      /* Removes default underline */
 }
 
+/* When user hovers over a link, underline appears */
 a:hover {
   text-decoration: underline;
 }
@@ -75,12 +89,15 @@ a:hover {
    PAGE STRUCTURE
    - Forces footer to the bottom
    - Makes glassmorphism cover entire page
+   
+   Flexbox layout ensures footer stays at bottom even when
+   content is short
 ----------------------------------------------------------- */
 
 html, body {
-  height: 100%;
-  margin: 0;
-  padding: 0;
+  height: 100%;                               /* Makes html and body fill entire viewport */
+  margin: 0;                                  /* Removes default browser margins */
+  padding: 0;                                 /* Removes default browser padding */
 }
 
 /*  
@@ -88,24 +105,29 @@ html, body {
    - Uses background image based on device size
    - Uses ::before for the blur overlay
    - Uses z-index -1 to ensure content is above the glass
+   
+   display: flex with flex-direction: column creates vertical layout
+   min-height: 100vh ensures page fills at least full viewport height
 */
 body.glass-morphism {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
+  display: flex;                              /* Enables flexbox layout */
+  flex-direction: column;                     /* Stacks elements vertically */
+  min-height: 100vh;                          /* 100vh = 100% of viewport height */
 
-  background-image: url('../images/mobile-tablets.png'); /* Default (mobile/tablet) */
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
+  background-image: url('../images/mobile-tablets.png'); /* Default (mobile/tablet) background */
+  background-size: cover;                     /* Scales image to cover entire background */
+  background-position: center;                /* Centers the background image */
+  background-repeat: no-repeat;               /* Prevents image from repeating/tiling */
+  background-attachment: fixed;               /* Background stays fixed when scrolling */
 
-  padding: 15px;
-  position: relative;
+  padding: 15px;                              /* Adds space around entire page content */
+  position: relative;                         /* Allows absolute positioning of ::before element */
 }
 
+/* flex: 1 makes main content expand to fill available space
+   This pushes the footer to the bottom of the page */
 .main-content {
-  flex: 1; /* Push footer to bottom */
+  flex: 1;                                    /* Grows to fill remaining space, pushing footer down */
 }
 
 
@@ -119,81 +141,99 @@ body.glass-morphism {
    Z-index trick:
    - ::before is -1 → sits behind page content
    - Background image is still underneath ::before
+   
+   ::before is a pseudo-element that creates a virtual element
+   before the content of the selected element (body in this case)
 ----------------------------------------------------------- */
 
 body.glass-morphism::before {
-  content: "";
-  position: fixed;
-  inset: 0;
+  content: "";                                /* Required for ::before to display (even if empty) */
+  position: fixed;                            /* Stays in place when page scrolls */
+  inset: 0;                                   /* Shorthand for top:0, right:0, bottom:0, left:0 */
 
-  /* Transparent white layer + blur */
-  background: rgba(255, 255, 255, 0.12);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
+  /* Transparent white layer + blur
+     rgba() creates colors with transparency (last number is opacity) */
+  background: rgba(255, 255, 255, 0.12);      /* Semi-transparent white overlay */
+  backdrop-filter: blur(20px);                /* Blurs everything behind this layer */
+  -webkit-backdrop-filter: blur(20px);        /* Safari/Chrome compatibility for blur */
 
-  /* Soft lighting / glass reflection */
-  border: 1px solid rgba(255,255,255,0.3);
+  /* Soft lighting / glass reflection
+     Multiple box-shadows create depth and glass-like appearance */
+  border: 1px solid rgba(255,255,255,0.3);    /* Subtle white border for glass edge */
   box-shadow:
-    0 8px 30px rgba(0,0,0,0.20),
-    inset 0 1px rgba(255,255,255,0.4),
-    inset 0 -1px rgba(255,255,255,0.2);
+    0 8px 30px rgba(0,0,0,0.20),              /* Outer shadow for depth */
+    inset 0 1px rgba(255,255,255,0.4),        /* Inner top highlight (light reflection) */
+    inset 0 -1px rgba(255,255,255,0.2);       /* Inner bottom highlight */
 
-  z-index: -1;
-  pointer-events: none;
+  z-index: -1;                                /* Places layer behind all content */
+  pointer-events: none;                       /* Allows clicks to pass through to content below */
 }
 
 
 
 /* -----------------------------------------------------------
    HEADER + RESPONSIVE LOGO
+   
+   The header contains the logo and navigation buttons
 ----------------------------------------------------------- */
 
 .header {
-  margin-bottom: 20px;
-  padding: 10px 0;
+  margin-bottom: 20px;                        /* Space below header */
+  padding: 10px 0;                            /* Vertical padding inside header */
 }
 
 .logo-img {
-  display: block;
-  height: auto;
+  display: block;                             /* Makes image a block element (removes inline spacing) */
+  height: auto;                               /* Maintains aspect ratio when width changes */
 }
 
-/* Logo size per device */
+/* Logo size per device
+   Media queries change logo size based on screen width
+   max-width: applies styles to screens SMALLER than the specified width
+   min-width: applies styles to screens LARGER than the specified width */
+
+/* Mobile devices (up to 767px wide) */
 @media (max-width: 767px) {
-  .logo-img { width: 85px; }
+  .logo-img { width: 85px; }                  /* Smallest logo for phones */
 }
 
+/* Tablets (768px to 1023px wide) */
 @media (min-width: 768px) and (max-width: 1023px) {
-  .logo-img { width: 110px; }
+  .logo-img { width: 110px; }                 /* Medium logo for tablets */
 }
 
+/* Laptops (1024px to 1439px wide) */
 @media (min-width: 1024px) and (max-width: 1439px) {
-  .logo-img { width: 135px; }
+  .logo-img { width: 135px; }                 /* Larger logo for laptops */
 }
 
+/* Desktop monitors (1440px and wider) */
 @media (min-width: 1440px) {
-  .logo-img { width: 160px; }
+  .logo-img { width: 160px; }                 /* Largest logo for big screens */
 }
 
 
 
 /* -----------------------------------------------------------
    PAGE TITLES / CONTENT HEADINGS
+   
+   These classes style the main headings and subheadings
+   rem units scale based on root font size (1rem = 16px by default)
 ----------------------------------------------------------- */
 
 .title {
-  font-size: 2.1rem;
-  margin-bottom: 15px;
-  line-height: 1.2;
+  font-size: 2.1rem;                          /* 2.1 × 16px = 33.6px font size */
+  margin-bottom: 15px;                        /* Space below title */
+  line-height: 1.2;                           /* Spacing between lines (1.2 = 120% of font size) */
 }
 
 .subtitle {
-  font-size: 1.3rem;
-  margin-bottom: 20px;
+  font-size: 1.3rem;                          /* 1.3 × 16px = 20.8px font size */
+  margin-bottom: 20px;                        /* Space below subtitle */
 }
 
 .cta-section {
-  margin-top: 10px;
+  margin-top: 10px;                           /* Space above call-to-action section */
 }
 
 
@@ -206,199 +246,234 @@ body.glass-morphism::before {
    - The main border uses a solid black line
    - ::before draws a second rotated border to look hand-drawn
    - Slight opacity and rotation create the "sketch" illusion
+   
+   This creates a double-border effect that looks hand-drawn
 ----------------------------------------------------------- */
 
 .sketch-border {
-  border: var(--sketch-border);
-  position: relative;
-  background: rgba(255,255,255,0.95);
-  box-shadow: var(--sketch-shadow);
+  border: var(--sketch-border);               /* 2px solid black border from variables */
+  position: relative;                         /* Allows absolute positioning of ::before */
+  background: rgba(255,255,255,0.95);         /* Almost-white background (slightly transparent) */
+  box-shadow: var(--sketch-shadow);           /* Drop shadow for depth */
 }
 
-/* The second sloppy border */
+/* The second sloppy border
+   Creates the hand-drawn sketch effect by layering a second border */
 .sketch-border::before {
-  content: "";
-  position: absolute;
-  inset: -2px;
-  border: 2px solid #000;
-  opacity: 0.55;
-  transform: rotate(-1deg);
-  pointer-events: none;
+  content: "";                                /* Required for ::before to display */
+  position: absolute;                         /* Positions relative to parent .sketch-border */
+  inset: -2px;                                /* Extends 2px outside parent border on all sides */
+  border: 2px solid #000;                     /* Second black border */
+  opacity: 0.55;                              /* Makes it semi-transparent */
+  transform: rotate(-1deg);                   /* Slight rotation creates "imperfect" look */
+  pointer-events: none;                       /* Allows clicks to pass through */
 }
 
-/* Extra decorative circle sometimes used behind form headings */
+/* Extra decorative circle sometimes used behind form headings
+   Adds visual interest to the form title area */
 .hand-drawn-circle {
-  position: absolute;
-  top: -18px;
-  left: -18px;
-  width: 70px;
-  height: 70px;
-  border-radius: 50%;
-  border: 2px dashed #000;
-  opacity: 0.25;
-  z-index: -1;
+  position: absolute;                         /* Positions relative to nearest positioned parent */
+  top: -18px;                                 /* Moves up 18px from normal position */
+  left: -18px;                                /* Moves left 18px from normal position */
+  width: 70px;                                /* Circle diameter */
+  height: 70px;                               /* Circle diameter */
+  border-radius: 50%;                         /* Makes square into circle (50% rounds all corners) */
+  border: 2px dashed #000;                    /* Dashed line for sketchy look */
+  opacity: 0.25;                              /* Very transparent */
+  z-index: -1;                                /* Places behind form heading text */
 }
 
 
 
 /* -----------------------------------------------------------
    BUTTONS (Sketch Style)
+   
+   Custom button styling that matches the hand-drawn aesthetic
+   transition: creates smooth animation when properties change
 ----------------------------------------------------------- */
 
 .sketch-button {
-  background: #fff;
-  border: 2px solid #000;
-  padding: 8px 15px;
-  font-weight: bold;
-  cursor: pointer;
-  box-shadow: 3px 3px 0 rgba(0,0,0,0.2);
-  transition: all 0.2s ease;
+  background: #fff;                           /* White background */
+  border: 2px solid #000;                     /* Black border */
+  padding: 8px 15px;                          /* Space inside button (vertical horizontal) */
+  font-weight: bold;                          /* Makes text bold */
+  cursor: pointer;                            /* Changes cursor to hand pointer on hover */
+  box-shadow: 3px 3px 0 rgba(0,0,0,0.2);      /* Drop shadow for 3D effect */
+  transition: all 0.2s ease;                  /* Smooth animation for all property changes */
 }
 
+/* Hover state - when user moves mouse over button */
 .sketch-button:hover {
-  background: var(--accent-soft);
-  border-color: var(--accent);
-  transform: translateY(-2px);
-  box-shadow: 5px 5px 0 rgba(0,0,0,0.25);
+  background: var(--accent-soft);             /* Light orange/black background (depends on screen size) */
+  border-color: var(--accent);                /* Orange/black border */
+  transform: translateY(-2px);                /* Moves button up 2px */
+  box-shadow: 5px 5px 0 rgba(0,0,0,0.25);     /* Larger shadow when lifted */
 }
 
+/* Active state - when user clicks button */
 .sketch-button:active {
-  transform: translateY(1px);
-  box-shadow: 2px 2px 0 rgba(0,0,0,0.25);
+  transform: translateY(1px);                 /* Moves button down 1px (pressed effect) */
+  box-shadow: 2px 2px 0 rgba(0,0,0,0.25);     /* Smaller shadow when pressed */
 }
 
 
 
 /* -----------------------------------------------------------
    FORM ELEMENTS
+   
+   Styles for the sign-up form on the right side of page
 ----------------------------------------------------------- */
 
 .sketch-form {
-  padding: 20px;
-  height: 100%;
+  padding: 20px;                              /* Space inside form container */
+  height: 100%;                               /* Makes form fill parent height */
 }
 
 .form-input {
-  width: 100%;
-  padding: 10px;
-  border: 2px solid #000;
-  background: rgba(255,255,255,0.85);
-  margin-bottom: 15px;
-  transition: all 0.25s ease;
+  width: 100%;                                /* Makes input fill container width */
+  padding: 10px;                              /* Space inside input field */
+  border: 2px solid #000;                     /* Black border around input */
+  background: rgba(255,255,255,0.85);         /* Semi-transparent white background */
+  margin-bottom: 15px;                        /* Space below each input */
+  transition: all 0.25s ease;                 /* Smooth animation for focus state */
 }
 
+/* Focus state - when user clicks into input field */
 .form-input:focus {
-  border-color: var(--accent);
-  background: #fff;
-  box-shadow: 3px 3px 0 rgba(0,0,0,0.2);
+  border-color: var(--accent);                /* Border changes to orange/black */
+  background: #fff;                           /* Background becomes solid white */
+  box-shadow: 3px 3px 0 rgba(0,0,0,0.2);      /* Adds shadow for depth */
 }
 
+/* Container for checkbox and its label */
 .checkbox-container {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  margin-bottom: 15px;
+  display: flex;                              /* Uses flexbox for alignment */
+  align-items: center;                        /* Vertically centers checkbox and label */
+  gap: 8px;                                   /* Space between checkbox and label */
+  margin-bottom: 15px;                        /* Space below checkbox */
 }
 
 
 
 /* -----------------------------------------------------------
    FEATURE LIST ANIMATION
+   
+   Creates animated checkmark list with staggered fade-in effect
+   Each list item appears slightly after the previous one
 ----------------------------------------------------------- */
 
 .feature-list {
-  list-style: none;
-  padding-left: 0;
+  list-style: none;                           /* Removes default bullet points */
+  padding-left: 0;                            /* Removes default left padding */
 }
 
 .feature-list li {
-  position: relative;
-  margin-bottom: 14px;
-  padding-left: 30px;
-  font-size: 1.1rem;
+  position: relative;                         /* Allows absolute positioning of checkmark */
+  margin-bottom: 14px;                        /* Space between list items */
+  padding-left: 30px;                         /* Space for custom checkmark */
+  font-size: 1.1rem;                          /* Slightly larger text */
 
-  opacity: 0;
-  transform: translateY(10px);
-  animation: fadeInUp 0.7s ease-out forwards;
+  opacity: 0;                                 /* Starts invisible */
+  transform: translateY(10px);                /* Starts 10px lower than final position */
+  animation: fadeInUp 0.7s ease-out forwards; /* Runs fadeInUp animation */
 }
 
-/* Staggered animation delay for each list item */
-.feature-list li:nth-child(2) { animation-delay: 0.12s; }
-.feature-list li:nth-child(3) { animation-delay: 0.18s; }
-.feature-list li:nth-child(4) { animation-delay: 0.24s; }
-.feature-list li:nth-child(5) { animation-delay: 0.30s; }
+/* Staggered animation delay for each list item
+   nth-child(n) targets specific children by number
+   Each item waits slightly longer before animating */
+.feature-list li:nth-child(2) { animation-delay: 0.12s; } /* 2nd item waits 0.12s */
+.feature-list li:nth-child(3) { animation-delay: 0.18s; } /* 3rd item waits 0.18s */
+.feature-list li:nth-child(4) { animation-delay: 0.24s; } /* 4th item waits 0.24s */
+.feature-list li:nth-child(5) { animation-delay: 0.30s; } /* 5th item waits 0.30s */
 
-/* Custom checkmark */
+/* Custom checkmark
+   ::before creates virtual element before list item content */
 .feature-list li::before {
-  content: "✓";
-  position: absolute;
-  left: 0;
-  font-size: 1.3rem;
-  font-weight: bold;
-  color: var(--checkmark-color);
+  content: "✓";                               /* Checkmark symbol */
+  position: absolute;                         /* Positions relative to parent li */
+  left: 0;                                    /* Aligns to left edge of padding area */
+  font-size: 1.3rem;                          /* Larger than list text */
+  font-weight: bold;                          /* Makes checkmark bold */
+  color: var(--checkmark-color);              /* Orange/black based on screen size */
 }
 
+/* @keyframes defines the animation sequence
+   from = starting state, to = ending state */
 @keyframes fadeInUp {
-  from { opacity: 0; transform: translateY(12px); }
-  to   { opacity: 1; transform: translateY(0); }
+  from { 
+    opacity: 0;                               /* Starts invisible */
+    transform: translateY(12px);              /* Starts 12px below final position */
+  }
+  to { 
+    opacity: 1;                               /* Ends fully visible */
+    transform: translateY(0);                 /* Ends at normal position */
+  }
 }
 
 
 
 /* -----------------------------------------------------------
    DIVIDER "SKETCH LINE"
+   
+   Simple horizontal line used as visual separator
 ----------------------------------------------------------- */
 
 .sketch-line {
-  height: 2px;
-  background: var(--line-color);
-  margin: 15px 0;
+  height: 2px;                                /* Line thickness */
+  background: var(--line-color);              /* Orange/black based on screen size */
+  margin: 15px 0;                             /* Vertical spacing (top and bottom) */
 }
 
 
 
 /* -----------------------------------------------------------
    FOOTER
+   
+   Bottom section of page with links and tech stack
 ----------------------------------------------------------- */
 
 .footer {
-  text-align: center;
-  margin-top: 30px;
-  padding-bottom: 20px;
+  text-align: center;                         /* Centers all footer content */
+  margin-top: 30px;                           /* Space above footer */
+  padding-bottom: 20px;                       /* Space below footer content */
 }
 
 
 
 /* -----------------------------------------------------------
    TECH STACK ICONS
+   
+   Displays technology logos (HTML, CSS, Bootstrap)
+   with hover effects
 ----------------------------------------------------------- */
 
 .tech-stack {
-  text-align: center;
-  margin: 20px 0 10px;
+  text-align: center;                         /* Centers tech stack section */
+  margin: 20px 0 10px;                        /* Vertical spacing (top bottom) */
 }
 
 .tech-icons {
-  display: flex;
-  justify-content: center;
-  gap: 25px;
-  flex-wrap: wrap;
+  display: flex;                              /* Uses flexbox layout */
+  justify-content: center;                    /* Centers icons horizontally */
+  gap: 25px;                                  /* Space between icons */
+  flex-wrap: wrap;                            /* Allows icons to wrap to next line on small screens */
 }
 
 .tech-item img {
-  width: 50px;
-  height: 50px;
-  object-fit: contain;
-  transition: transform 0.3s ease;
+  width: 50px;                                /* Icon width */
+  height: 50px;                               /* Icon height */
+  object-fit: contain;                        /* Scales image to fit without distortion */
+  transition: transform 0.3s ease;            /* Smooth animation for hover effect */
 }
 
+/* Hover effect - makes icon slightly larger */
 .tech-item img:hover {
-  transform: scale(1.1);
+  transform: scale(1.1);                      /* Scales to 110% of original size */
 }
 
 .tech-item span {
-  font-size: 0.8rem;
-  font-weight: 700;
+  font-size: 0.8rem;                          /* Small text for icon labels */
+  font-weight: 700;                           /* Bold text */
 }
 
 
@@ -409,50 +484,60 @@ body.glass-morphism::before {
    CSS file lives in assets/css/
    Images live in assets/images/
    Therefore the correct path is ../images/
+   
+   ../ means "go up one folder level"
+   From css/ folder, ../ goes to assets/
+   Then /images/ goes into images/ folder
 ----------------------------------------------------------- */
 
-/* ---- Mobile ---- */
+/* ---- Mobile ---- 
+   Applies to screens 767px wide or smaller */
 @media (max-width: 767px) {
   body.glass-morphism {
-    background-image: url('../images/mobile-tablets.png');
+    background-image: url('../images/mobile-tablets.png'); /* Orange doodle background */
   }
 }
 
-/* ---- Tablet ---- */
+/* ---- Tablet ---- 
+   Applies to screens between 768px and 1023px wide */
 @media (min-width: 768px) and (max-width: 1023px) {
   body.glass-morphism {
-    background-image: url('../images/mobile-tablets.png');
+    background-image: url('../images/mobile-tablets.png'); /* Same orange doodle background */
   }
 }
 
-/* ---- Laptop ---- */
+/* ---- Laptop ---- 
+   Applies to screens between 1024px and 1439px wide */
 @media (min-width: 1024px) and (max-width: 1439px) {
   body.glass-morphism {
-    background-image: url('../images/desktop-and-laptop.png');
+    background-image: url('../images/desktop-and-laptop.png'); /* Black/white professional background */
   }
 
-  /* Switch to black theme */
+  /* Switch to black theme
+     Redefines CSS variables for this screen size */
   :root {
-    --accent: #000;
-    --accent-soft: rgba(0,0,0,0.1);
-    --line-color: #000;
-    --checkmark-color: #000;
-    --link-color: #000;
+    --accent: #000;                           /* Changes from orange to black */
+    --accent-soft: rgba(0,0,0,0.1);           /* Black with transparency */
+    --line-color: #000;                       /* Black lines */
+    --checkmark-color: #000;                  /* Black checkmarks */
+    --link-color: #000;                       /* Black links */
   }
 }
 
-/* ---- Desktop ---- */
+/* ---- Desktop ---- 
+   Applies to screens 1440px wide or larger */
 @media (min-width: 1440px) {
   body.glass-morphism {
-    background-image: url('../images/desktop-and-laptop.png');
+    background-image: url('../images/desktop-and-laptop.png'); /* Black/white professional background */
   }
 
+  /* Redefines variables to black theme for large screens */
   :root {
-    --accent: #000;
-    --accent-soft: rgba(0,0,0,0.1);
-    --line-color: #000;
-    --checkmark-color: #000;
-    --link-color: #000;
+    --accent: #000;                           /* Changes from orange to black */
+    --accent-soft: rgba(0,0,0,0.1);           /* Black with transparency */
+    --line-color: #000;                       /* Black lines */
+    --checkmark-color: #000;                  /* Black checkmarks */
+    --link-color: #000;                       /* Black links */
   }
 }
 
