@@ -3,6 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <!-- Open Graph meta tags for social media sharing -->
   <meta property="title" content="QuickPlate – Fast, Fresh Meal Delivery" />
   <meta property="description" content="Order fresh meals delivered to your door in minutes with QuickPlate." />
   <meta property="url" content="https://quickplate.com" />
@@ -10,13 +12,13 @@
 
   <title>Quickplate</title>
 
-  <!-- Favicon -->
+  <!-- Favicon - small icon displayed in browser tab -->
   <link rel="icon" type="image/png" href="assets/images/Logo.png" />
 
-  <!-- Bootstrap -->
+  <!-- Bootstrap 5.3.8 CSS - provides responsive grid system and utility classes -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" />
 
-  <!-- Custom Styles -->
+  <!-- Custom CSS - contains custom styles for this project -->
   <link rel="stylesheet" href="assets/css/styles.css" />
 </head>
 
@@ -26,7 +28,12 @@
        HEADER
   ============================ -->
   <header class="header">
+    <!-- Bootstrap container - centers content and adds responsive padding -->
     <div class="container d-flex justify-content-between align-items-center">
+      <!-- d-flex: makes container a flexbox -->
+      <!-- justify-content-between: pushes logo left and nav right -->
+      <!-- align-items-center: vertically centers items -->
+      
       <!-- Logo -->
       <div class="logo">
         <img src="assets/images/Logo.png" alt="Quickplate Logo" class="logo-img" />
@@ -34,6 +41,8 @@
 
       <!-- Navigation -->
       <nav class="d-flex gap-3">
+        <!-- d-flex: makes nav a flexbox -->
+        <!-- gap-3: adds spacing between nav items (1rem = 16px) -->
         <a href="docs.html" class="sketch-button">Docs</a>
         <button class="sketch-button">Login</button>
       </nav>
@@ -45,11 +54,17 @@
        MAIN CONTENT
   ============================ -->
   <main class="main-content">
+    <!-- Bootstrap container - provides responsive fixed-width container -->
     <div class="container">
+      <!-- Bootstrap row - creates a horizontal group of columns -->
       <div class="row">
 
         <!-- LEFT COLUMN -->
         <section class="col-md-6 mb-4 mb-md-0">
+          <!-- col-md-6: takes up 6/12 columns (50%) on medium+ screens -->
+          <!-- mb-4: margin-bottom of 1.5rem on small screens -->
+          <!-- mb-md-0: removes bottom margin on medium+ screens -->
+          
           <h1 class="title">Text-only QR menus for modern restaurants</h1>
           <p class="subtitle">Turn tables faster with cleaner ordering</p>
 
@@ -68,8 +83,12 @@
 
         <!-- RIGHT COLUMN: FORM -->
         <aside class="col-md-6">
+          <!-- col-md-6: takes up 6/12 columns (50%) on medium+ screens -->
+          <!-- On small screens, both columns stack to full width (12/12) -->
+          
           <div class="sketch-border sketch-form">
             <div class="position-relative">
+              <!-- position-relative: allows absolute positioning of child elements -->
               <div class="hand-drawn-circle" aria-hidden="true"></div>
               <h2 class="title">Create your restaurant account</h2>
             </div>
@@ -87,6 +106,7 @@
               </div>
 
               <button type="submit" class="sketch-button w-100">Create account</button>
+              <!-- w-100: width 100% - makes button full width of container -->
             </form>
           </div>
         </aside>
@@ -126,14 +146,20 @@
     </div>
 
     <div class="d-flex justify-content-center flex-wrap mt-3">
+      <!-- d-flex: makes container a flexbox -->
+      <!-- justify-content-center: centers items horizontally -->
+      <!-- flex-wrap: allows items to wrap to next line if needed -->
+      <!-- mt-3: margin-top of 1rem (16px) -->
+      
       <a href="#" class="mx-2">Privacy</a>
+      <!-- mx-2: margin left and right of 0.5rem (8px) -->
       <a href="#" class="mx-2">Terms</a>
       <a href="docs.html" class="mx-2">Support</a>
     </div>
   </footer>
 
 
-  <!-- Bootstrap Scripts -->
+  <!-- Bootstrap 5.3.8 JavaScript Bundle - includes Popper.js for dropdowns, tooltips, etc. -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
