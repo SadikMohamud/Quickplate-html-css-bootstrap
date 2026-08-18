@@ -1,214 +1,115 @@
-📖 About The Project
-https://quickplate.app
-Quickplate is a concept landing page for a QR-menu SaaS.
-This build focuses on:
+# ZAAT
 
-A mobile-first workflow
-Sketch-style UI using CSS pseudo-elements
-A responsive layout using both Bootstrap and custom CSS
-Glassmorphism overlays
-Background images that change per device size
-Clean CSS variables + design system setup
+A stamp-based loyalty card PWA for ZAAT, a Lebanese grill and salads restaurant. Customers carry a digital stamp card on their phone, staff scan a QR at the counter to add stamps, and the owner sets the rewards and runs the menu without a developer.
 
+Built with Next.js (App Router), Supabase (Postgres, Auth, RLS) and Vercel.
 
-This project allowed me to refine responsive design and deepen my understanding of CSS effects that look hand-drawn but remain fully scalable.
+## How it works
 
+- **Customers** sign in with a six digit code emailed to them, then see their card and show a unique QR at the counter. The card face prints one letter per stamp, Z A A T over Z A A T A R, exactly like the paper card.
+- **Staff** set how many stamps the order earns, scan the customer QR (or look them up by phone, email or name), and hand over a reward when one is ready.
+- **The owner** sets the card size and its rewards, edits the whole menu, manages staff, and sees the counts.
 
-📱 Mobile-First Design
+### The card
 
-Quickplate was designed starting from mobile.
-Every layout decision begins with phones, then scales up to tablets, laptops and desktops.
+A card carries several rewards, not one. ZAAT runs a ten stamp card:
 
-This approach gives the UI:
+| Stamps | Reward |
+| --- | --- |
+| 4 | Free wrap |
+| 10 | Free ZAAT meal |
 
-✓ cleaner spacing
-✓ better readability
-✓ predictable breakpoints
-✓ faster loading
-✓ consistency across all screen sizes
+Claiming the wrap at four leaves the card running. Claiming the last reward closes the card, and the next stamp opens a fresh one. The owner can add, move or remove rewards from the dashboard, and the card falls back to numbered cells if the size no longer matches the letters.
 
-Mobile Layout Screenshot
+### Integrity model
 
-![mobile-view](assets/Screenshots/mobile-view.png)
+- `stamp_events` is append-only: one row per stamp earned or reward claimed, never a mutable counter. Granting three stamps in one action writes three rows sharing a batch id. Update and delete are revoked at the database level, so history cannot be rewritten even by a signed-in staff device.
+- All writes go through two Postgres functions, `add_stamps` and `redeem_milestone`, which verify the caller is staff or owner. Customers cannot grant themselves stamps, even with direct API access.
+- A reward cannot be claimed twice on the same card. A unique index on `(customer_id, milestone_id, cycle)` refuses the second row, so replay is stopped by the database rather than by application logic.
+- Both write functions take a request id, so a retried or double-tapped request replays its result instead of stamping again.
+- Every customer gets a unique, opaque `card_code` shown as their QR. It never exposes the auth user id.
+- Row-level security means a customer can only ever read their own card.
+- Card progress is always derived from the event log, never stored.
 
+### The menu
 
-🧩 Responsive Layout (Scaling Up)
+Categories hold dishes, and dishes carry variants, because the same dish is priced by format: Chicken Shawarma is 7.90 as a wrap and 12.90 as a box. That is one dish with two variants, never two dishes. The owner adds, edits, reorders and hides all three levels from `/owner/menu`.
 
-After building the mobile version, I progressively enhanced for larger screens.
+`/menu` is the one page that works without an account, so a diner can scan the QR on the table and read it.
 
+## Setup
 
-📱 Tablet View (768–1023px)
+### 1. Supabase
 
-•Increased white-space
-•Larger logo
-•More balanced layout
+1. Create a project at [supabase.com](https://supabase.com).
+2. Run the files in `supabase/migrations/` in order, in the SQL editor (or `supabase db push` with the CLI).
+3. Run `supabase/seed.sql` to create the ZAAT card, the menu categories and one worked example dish.
 
+### 2. Email sign in
 
+Sign in is passwordless: Supabase emails a six digit code. In the Supabase dashboard:
 
-![tablet-view](assets/Screenshots/tablet-view.png)
+1. Authentication, then Sign In / Up, then Email: make sure the email provider is enabled.
+2. Authentication, then Emails, then Templates: open the "Magic Link" template and make sure it includes the code token, `{{ .Token }}`, so the email carries a code and not only a link.
 
+The built-in email sender is fine for testing. For production volume, connect your own SMTP provider under Authentication, then Emails, then SMTP Settings.
 
-💻 Laptop View (1024–1439px)
+### 3. Environment
 
-•Switches to the sketch-style black & white background
-•Headings scale up
-•Wider grid layout
+```bash
+cp .env.example .env.local
+```
 
-![laptop-view](assets/Screenshots/laptop-view.png)
+Fill in `NEXT_PUBLIC_SUPABASE_URL` and `NEXT_PUBLIC_SUPABASE_ANON_KEY` from Project Settings, API. Secrets live only in environment variables, never in the code.
 
+### 4. Run
 
-🖥 Desktop View (1440px+)
+```bash
+npm install
+npm run dev
+```
 
-•Full-width layout
-•Maximum spacing
-•Cleanest presentation
+### 5. Owner bootstrap
 
+Sign in to the app once with the owner's email, then run one line in the Supabase SQL editor (see `supabase/seed.sql`):
 
-![desktop-view](assets/Screenshots/laptop-view.png)
+```sql
+update public.profiles set role = 'owner' where email = 'owner@example.com';
+```
 
+After that the owner adds staff from the dashboard. Staff sign in on the counter device with their own email.
 
-🎨 Design Details
+## Deploy (Vercel)
 
-✏️ Custom Sketch Border Effect
+1. Push this repo to GitHub and import it into Vercel.
+2. Add the two environment variables from `.env.example`.
+3. In Supabase, under Authentication then URL Configuration, set the Site URL to the Vercel URL and add `https://your-domain/auth/callback` to the redirect list.
 
-One of the signatures of this UI is the hand-drawn border used on the form container.
-This is created with a CSS ::before pseudo-element placed slightly offset, rotated, and lowered in opacity to imitate a real pencil sketch.
+## Branding
 
-Screenshot
+Every brand value lives in one file, `lib/theme.ts`: the name, the strapline, the descriptor, the palette, and the letters printed on the card. Pointing this codebase at the next client is one edit there plus new PNGs in `public/icons/`. Nothing else hardcodes a brand string.
 
-![sketch-border](assets/Screenshots/sketch-border-closeup.png)
+## Project structure
 
-
-🌫 Glassmorphism Layer
-
-The page uses a glass-like overlay to soften backgrounds:
-
-Blur filters
-
-Transparent white wash
-
-Inset highlights
-
-Stacked z-index layers
-
-
-This allows bright gradient or doodle backgrounds without affecting readability.
-
-
-⚙️ Key Features
-
-✓ Mobile-first responsive layout
-✓ Dynamic background images based on screen width
-✓ Sketch-style border effect using CSS ::before
-✓ CSS variables for colour and spacing consistency
-✓ Bootstrap grid system for structure
-✓ Fade-in animation for feature list
-✓ Clean form design with subtle interaction states
-✓ Fully semantic HTML
-
-
-🛠 Built With
-
-HTML5 — structure
-
-CSS3 — custom sketch UI, animations, glassmorphism
-
-Bootstrap 5 — grid + responsive utilities
-
-Google Fonts — “Kalam” + “Fredoka”
-
-Devicon — tech stack icons
-
-
-📁 Project Structure
-
-Quickplate-html-css-bootstrap/
-│
-├── index.html
-├── docs.html
-├── README.md
-│
-└── assets/
-    ├── css/
-    │   └── styles.css
-    │
-    └── images/
-        ├── Logo.png
-        └── Screenshots/
-            ├── preview.png
-            ├── mobile-first.png
-            ├── tablet-view.png
-            ├── laptop-view.png
-            ├── desktop-view.png
-            ├── sketch-border-closeup.png
-            ├── glass-layer.png
-
-
-⚙️ Installation
-
-# Clone repository
-git clone https://github.com/SadikMohamud/Quickplate-html-css-bootstrap.git
-
-# Navigate into project
-cd Quickplate-html-css-bootstrap
-
-# Open in browser
-open index.html
-
-
-🚀 Deployment
-
-Already deployed using GitHub Pages
-and connected to a custom Namecheap domain.
-
-
-🔮 Future Improvements
-
-Add full SaaS onboarding
-
-Add dark mode
-
-Add animated SVG doodles
-
-Convert to React + Tailwind version
-
-Add multi-page dashboard mockups
-
-
-🤖 AI Tools Used
-
-This project was enhanced using:
-
-DeepSeek — primary assistant for code planning & structuring
-
-GitHub Copilot — inline code suggestions
-
-ChatGPT — layout refactoring, responsive design help, documentation
-
-Claude — early wireframe guidance
-
------wireframes-----
-Desktop & Laptop
-![Laptop & Desktop-wireframe](assets/Screenshots/laptop-desktop-wirefame.png)
-
-Mobile-wireframe
-![Mobile-wireframe](assets/Screenshots/mobile-wireframe.png)
-
-tablet wireframe
-
-![tablet-wireframe](assets/Screenshots/tablet-wireframe.png)
-
-
-
-All tools used for learning and speeding up workflow.
-
+```
+app/            Pages: login, card, menu, staff till, owner dashboard, auth callback
+  owner/loyalty   Card size and rewards
+  owner/menu      Categories, dishes, prices, variants
+components/     Shared UI: stamp card, QR scanner, till panel, footer
+lib/theme.ts    Brand config (single source of truth)
+lib/menu.ts     Menu loading and price formatting
+lib/supabase/   Browser and server Supabase clients
+lib/v2/         Stubs for v2: Wallet passes, analytics, multi-location
+supabase/       SQL migrations and seed
+proxy.ts        Session refresh and signed-out redirects
+```
+
+## v2 (scaffolded, not implemented)
+
+- Apple and Google Wallet passes (`lib/v2/wallet.ts`)
+- Analytics over the event log (`lib/v2/analytics.ts`)
+- Multi-location (`lib/v2/locations.ts`, plus nullable `location_id` columns already in the schema)
 
 ---
 
-👤 Author
-
-Sadik Mohamud
-Code Institute Student
-GitHub: @SadikMohamud
-
-Built with ❤️ as a learning project to deepen my understanding of responsive design, CSS effects, and visual design systems.
+Built by [Snurm](https://github.com/SadikMohamud)
