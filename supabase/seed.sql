@@ -59,8 +59,16 @@ select id, 'Box', 12.90, 2 from item;
 -- Owner bootstrap
 -- ---------------------------------------------------------------
 --
--- Sign in to the app once with the owner's email, then run the line below
--- in the Supabase SQL editor with the real address. After that the owner
--- promotes staff from the dashboard.
+-- Sign in to the app once as admin@zaat.com to create the account, then
+-- run the line below in the Supabase SQL editor. After that the owner
+-- promotes staff from the dashboard, and can set a password of their own
+-- from the Account screen.
 --
--- update public.profiles set role = 'owner' where email = 'owner@example.com';
+-- No password is stored here on purpose: this file is committed, and a
+-- credential in a repository is a credential everyone has.
+--
+-- Run this by hand AFTER the first sign in. Running it as part of the
+-- seed would match no rows, because the profile does not exist until the
+-- account signs in once.
+--
+-- update public.profiles set role = 'owner' where email = 'admin@zaat.com';

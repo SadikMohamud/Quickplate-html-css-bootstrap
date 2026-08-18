@@ -6,7 +6,7 @@ Built with Next.js (App Router), Supabase (Postgres, Auth, RLS) and Vercel.
 
 ## How it works
 
-- **Customers** sign in with a six digit code emailed to them, then see their card and show a unique QR at the counter. The card face prints one letter per stamp, Z A A T over Z A A T A R, exactly like the paper card.
+- **Customers** sign in with a six digit code emailed to them, or a password if they have set one, then see their card and show a unique QR at the counter. The card face prints one letter per stamp, Z A A T over Z A A T A R, exactly like the paper card.
 - **Staff** set how many stamps the order earns, scan the customer QR (or look them up by phone, email or name), and hand over a reward when one is ready.
 - **The owner** sets the card size and its rewards, edits the whole menu, manages staff, and sees the counts.
 
@@ -47,7 +47,7 @@ Categories hold dishes, and dishes carry variants, because the same dish is pric
 
 ### 2. Email sign in
 
-Sign in is passwordless: Supabase emails a six digit code. In the Supabase dashboard:
+Sign in is by a six digit code emailed by Supabase. A password is optional, set per account from the Account screen, and useful on a shared counter device where fetching a code each shift is friction. In the Supabase dashboard:
 
 1. Authentication, then Sign In / Up, then Email: make sure the email provider is enabled.
 2. Authentication, then Emails, then Templates: open the "Magic Link" template and make sure it includes the code token, `{{ .Token }}`, so the email carries a code and not only a link.
@@ -71,13 +71,15 @@ npm run dev
 
 ### 5. Owner bootstrap
 
-Sign in to the app once with the owner's email, then run one line in the Supabase SQL editor (see `supabase/seed.sql`):
+Sign in to the app once as `admin@zaat.com` with an emailed code, which creates the account. Then run one line in the Supabase SQL editor (already in `supabase/seed.sql`):
 
 ```sql
-update public.profiles set role = 'owner' where email = 'owner@example.com';
+update public.profiles set role = 'owner' where email = 'admin@zaat.com';
 ```
 
-After that the owner adds staff from the dashboard. Staff sign in on the counter device with their own email.
+Sign out and back in so the new role is picked up. After that the owner adds staff from the dashboard.
+
+Never commit a password to this repository. If the owner wants one for the counter device, they set it themselves on the Account screen after signing in. Codes keep working alongside it.
 
 ## Deploy (Vercel)
 

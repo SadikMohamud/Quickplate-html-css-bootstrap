@@ -23,8 +23,6 @@ const home: Record<Role, { href: string; label: string }> = {
   owner: { href: "/owner", label: "Dashboard" },
 };
 
-// Sign in is passwordless, so there is no password to change here. What
-// is left is the name shown at the counter.
 export default function AccountView({
   userId,
   email,
@@ -32,11 +30,13 @@ export default function AccountView({
   role,
 }: AccountViewProps) {
   const [name, setName] = useState(displayName ?? "");
+  const [password, setPassword] = useState("");
+  const [confirm, setConfirm] = useState("");
   const [busy, setBusy] = useState(false);
   const [message, setMessage] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
 
-  async function submit(e: React.FormEvent) {
+  async function saveName(e: React.FormEvent) {
     e.preventDefault();
     setError(null);
     setMessage(null);
@@ -53,8 +53,37 @@ export default function AccountView({
     setMessage("Name saved.");
   }
 
+  async function savePassword(e: React.FormEvent) {
+    e.preventDefault();
+    setError(null);
+    setMessage(null);
+    if (password.length < 8) {
+      setError("Please choose a password of at least 8 characters.");
+      return;
+    }
+    if (password !== confirm) {
+      setError("The two passwords do not match.");
+      return;
+    }
+    setBusy(true);
+    const { error: err } = await getBrowserClient().auth.updateUser({
+      password,
+    });
+    setBusy(false);
+    if (err) {
+      setError(err.message);
+      return;
+    }
+    setPassword("");
+    setConfirm("");
+    setMessage("Password saved. You can now sign in with it, or keep using codes.");
+  }
+
   const inputClasses =
     "w-full rounded-xl border border-brand-accent/40 bg-brand-surface px-4 py-3 outline-none focus:border-brand-accent";
+  const submitClasses =
+    "mt-1 rounded-xl bg-brand py-3 font-medium text-brand-on-primary disabled:opacity-50";
+  const cardClasses = "animate-rise rounded-3xl bg-brand-surface p-6 shadow-sm";
   const dest = home[role];
 
   return (
@@ -75,12 +104,12 @@ export default function AccountView({
           </Link>
         </header>
 
-        <section className="animate-rise rounded-3xl bg-brand-surface p-6 shadow-sm">
+        <section className={cardClasses}>
           <p className="text-sm text-brand-muted">Signed in as</p>
           <p className="mb-5 break-all font-medium">{email}</p>
 
           <h2 className="mb-3 font-semibold">Your name</h2>
-          <form onSubmit={submit} className="flex flex-col gap-3">
+          <form onSubmit={saveName} className="flex flex-col gap-3">
             <label className="text-sm font-medium" htmlFor="display-name">
               Shown to staff at the counter
             </label>
@@ -93,26 +122,65 @@ export default function AccountView({
               onChange={(e) => setName(e.target.value)}
               className={inputClasses}
             />
-            <button
-              type="submit"
-              disabled={busy}
-              className="mt-1 rounded-xl bg-brand py-3 font-medium text-brand-on-primary disabled:opacity-50"
-            >
+            <button type="submit" disabled={busy} className={submitClasses}>
               {busy ? "Saving..." : "Save name"}
             </button>
           </form>
-
-          {message && (
-            <p className="animate-rise mt-4 rounded-xl bg-brand-success/10 px-4 py-3 text-center text-sm text-brand-success">
-              {message}
-            </p>
-          )}
-          {error && (
-            <p className="animate-rise mt-4 rounded-xl bg-red-50 px-4 py-3 text-center text-sm text-red-700">
-              {error}
-            </p>
-          )}
         </section>
+
+        {/* Optional, and mainly for the counter device: signing in every
+            shift with a code from an inbox is friction, so staff and the
+            owner can set a password once and use it instead. Codes keep
+            working either way. */}
+        <section className={cardClasses}>
+          <h2 className="mb-1 font-semibold">Password</h2>
+          <p className="mb-4 text-sm text-brand-muted">
+            Optional. Set one to sign in without waiting for an email code.
+            Choose at least 8 characters, and do not reuse a password from
+            anywhere else.
+          </p>
+          <form onSubmit={savePassword} className="flex flex-col gap-3">
+            <label className="text-sm font-medium" htmlFor="new-password">
+              New password
+            </label>
+            <input
+              id="new-password"
+              type="password"
+              autoComplete="new-password"
+              placeholder="At least 8 characters"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              className={inputClasses}
+              required
+            />
+            <label className="text-sm font-medium" htmlFor="confirm-password">
+              Confirm password
+            </label>
+            <input
+              id="confirm-password"
+              type="password"
+              autoComplete="new-password"
+              value={confirm}
+              onChange={(e) => setConfirm(e.target.value)}
+              className={inputClasses}
+              required
+            />
+            <button type="submit" disabled={busy} className={submitClasses}>
+              {busy ? "Saving..." : "Save password"}
+            </button>
+          </form>
+        </section>
+
+        {message && (
+          <p className="animate-rise rounded-xl bg-brand-success/10 px-4 py-3 text-center text-sm text-brand-success">
+            {message}
+          </p>
+        )}
+        {error && (
+          <p className="animate-rise rounded-xl bg-red-50 px-4 py-3 text-center text-sm text-red-700">
+            {error}
+          </p>
+        )}
 
         <div className="text-center">
           <SignOutButton />
